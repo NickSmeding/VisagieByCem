@@ -12,7 +12,11 @@
     <meta content="" name="author" />
 
     <!-- CORE JS - START --> 
+    <script src="../assets/plugins/JQuery/jquery-1.11.2.min.js" type="text/javascript"></script> 
+    <script src="../assets/plugins/JQuery/jquery.easing.min.js" type="text/javascript"></script> 
+    <script src="../assets/plugins/JQuery/jquery-ui.min.js" type="text/javascript"></script> 
     <script src="../assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script> 
+    <script src="../assets/js/jasny-bootstrap.min.js" type="text/javascript"></script> 
     <!-- CORE JS - END --> 
     
     <!-- SCRIPT DATATABLES  - START --> 
@@ -25,6 +29,8 @@
     <!-- CORE CSS - START -->
     <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="../assets/fonts/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+    <link href="../assets/plugins/JQuery/jquery-ui.min.css" type="stylesheet">
+    <link href="../assets/css/jasny-bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <!-- CORE CSS - END -->
     
     <!-- CSS DATATABLES - START --> 

@@ -1,0 +1,58 @@
+/* START - Navbar */
+.navbar{
+    border-radius: 0px;   
+}
+
+.cart-btn{
+    color: #000000;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.cart-btn:hover{
+    color: blue;
+}
+
+.dropdown-toggle{
+    color: grey;
+}
+
+.badge{
+    background: grey;
+    color: white;
+    width: auto;
+    height: auto;
+    margin: 0;
+    border-radius: 50%;
+    position:absolute;
+    top: 5px;
+    right: 0px;
+    padding:5px;
+    font-size: 60%;
+}
+
+.mobile-nav{
+    display: none;
+}
+
+#menu-toggle{
+    color: grey;
+}
+
+@media screen and (max-width: 767px) {
+    .nav{
+        display: none;    
+    }
+    
+    .mobile-nav{
+        display: block;
+    }
+}
+/* END - Navbar */
+
+/* START - Dropdown */
+.errMsg{
+    color: red;
+    margin-bottom: 5px;
+}
+/* END - Dropdown*/

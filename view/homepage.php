@@ -1,7 +1,16 @@
 <?php
+    session_start();
+    include_once('../classes/database.class.php');
+    include_once('../classes/user.class.php');
+    include_once('../classes/cart.class.php');
     include_once('inc/head.php');
+    include_once('inc/header.php');
 ?>
-<body>
-    <h1 style="text-decoration: underline;">kappersite basis</h1>
-    <h3>hierbij de mappen structuur</h3>
-</body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            content
+        </div>
+    </div>
+</div>

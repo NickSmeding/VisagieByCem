@@ -66,8 +66,21 @@
 
             unset($_SESSION['user_id']);  
             
-            header("Location: ../index.php");
+            header("Location: ../../index.php");
             exit();
+        }
+        
+        //haal een user op gebaseerd op user_id
+        public function getUserData($user_id)
+        {  
+            $userData = new Database();
+            $userData->query("SELECT * FROM customer WHERE id = :id");
+            $userData->bind(":id", $user_id);
+            $userData->execute();
+            if ($userData->rowCount() > 0) {
+                $user = $userData->single();
+                return $user;
+            }
         }
         
         //functie om wachtwoord te hashen
