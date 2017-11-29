@@ -17,8 +17,8 @@
         $cartClass->cartDelete($_POST['id']);
     }
 ?>
-<nav class="navbar navbar-default">
-    <div class="col-md-offset-1 col-md-11">
+<nav class="navbar navbar-default no-border">
+    <div class="col-md-12">
     <div class="container-fluid">
         <div class="navbar-header">
             <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1">
@@ -27,6 +27,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+            <a class="navbar-brand" href="">
+                <img class="brand" src="../assets/images/logo.png" alt="visagiebycem">
+            </a>
         </div>
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="nav navbar-nav navbar-right">
@@ -136,9 +139,25 @@
                                 ';
                             }
                         ?>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="mobile-nav">
+                <li>
+                lgon
                 </li>
             </ul>
         </div>
     </div>
-    </div>
 </nav>
+<nav class="nav navbar navbar-default custom-style">
+    <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Page 1</a></li>
+        <li><a href="#">Page 2</a></li>
+        <li><a href="#">Page 3</a></li>
+    </ul>
+</nav>
+<div class="header-img-div mobile">
+    <img  class="header-img" src="../assets/images/brancheheader-kapper.jpg">
+</div>

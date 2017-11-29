@@ -1,6 +1,7 @@
 /* START - Navbar */
 .navbar{
     border-radius: 0px;   
+    background-color: transparent; 
 }
 
 .cart-btn{
@@ -17,8 +18,12 @@
     color: grey;
 }
 
+.dropdown-menu{
+    padding: 5px;
+}
+
 .badge{
-    background: grey;
+    background: #ed2966;
     color: white;
     width: auto;
     height: auto;
@@ -31,8 +36,36 @@
     font-size: 60%;
 }
 
+.brand{
+    height: 100%;
+}
+
+.navbar-brand {
+    height: 80px;
+    padding: 0px;
+}
+
+.custom-style{
+    margin-bottom: 0px;
+}
+
 .mobile-nav{
     display: none;
+}
+
+.no-border{
+    border: none;
+}
+
+.header-img-div{
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+
+.header-img{
+    width: 100%;
+    height: auto;
 }
 
 #menu-toggle{
