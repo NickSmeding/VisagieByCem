@@ -28,7 +28,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="">
-                <img class="brand" src="../assets/images/logo.png" alt="visagiebycem">
+                <img class="brand" src="../assets/images/logo_roze.png" alt="visagiebycem">
             </a>
         </div>
         <div class="collapse navbar-collapse" id="navcol-1">
@@ -152,10 +152,12 @@
 </nav>
 <nav class="nav navbar navbar-default custom-style">
     <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">Page 1</a></li>
-        <li><a href="#">Page 2</a></li>
-        <li><a href="#">Page 3</a></li>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Producten</a></li>
+        <li><a href="#">Tarieven</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Over mij</a></li>
+        <li><a href="#">Contact</a></li>
     </ul>
 </nav>
 <div class="header-img-div mobile">
