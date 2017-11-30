@@ -1,3 +1,14 @@
+h2{
+    font-size: 40px;   
+    text-transform: uppercase;
+    font-family: "Times New Roman", Times, serif;
+    margin: 0;
+}
+
+span{
+    color: #ed2966;
+}
+
 /* START - Navbar */
 .navbar{
     border-radius: 0px;   

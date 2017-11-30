@@ -10,7 +10,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            content
+            <h2>behandelingen <span>die wij doe</span></h2>
         </div>
     </div>
 </div>
