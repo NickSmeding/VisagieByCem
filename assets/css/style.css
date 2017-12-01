@@ -19,6 +19,12 @@ span{
     float:left; 
 }
 
+.product-img{
+    margin-bottom: 5px;
+    width: 100%;
+    float:inherit;
+}
+
 /* START - Navbar */
 .navbar{
     border-radius: 0px;   

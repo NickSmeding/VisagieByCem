@@ -4,12 +4,11 @@
         private $email;    // email variable
         private $password; // password variable
         private $user;     // user data variable
-        private $salt;     // het salt van encrypt
         
         //constructor
         public function __construct() 
         {
-           $this->salt = 'mijnsalt';
+           
         }
         
         //probeer in teloggen met opgegeven gegevens
@@ -40,7 +39,7 @@
             $db->execute();
             if ($db->rowCount() > 0) {
                 $user = $db->single();
-                $input_password = $this->getHash($this->getPassword());  
+                $input_password = $this->getHash($this->getPassword(), $this->getEmail());  
                 if ($input_password == $user['password']) {
                     return $user;
                 }
@@ -84,9 +83,9 @@
         }
         
         //functie om wachtwoord te hashen
-        public function getHash($password)
+        public function getHash($password, $salt)
         {
-           return  hash_hmac('sha256', $password, $this->salt);
+           return  hash_hmac('sha256', $password, $salt);
         }
         
         //getters
