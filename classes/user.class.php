@@ -58,6 +58,46 @@
             }
         }
         
+        public function register($userInfo) {
+
+
+            //query voor address gegevens
+
+            $addressRegistration = new Database();
+
+            $addressRegistration->query("INSERT INTO address (zip, housenumber, extension, city, street)
+    VALUES (:postalCode, :houseNumber, :addition, :city, :streetName)");
+
+            $addressRegistration->bind(":city", $userInfo['city']);
+            $addressRegistration->bind(":postalCode", $userInfo['postalCode']);
+            $addressRegistration->bind(":streetName", $userInfo['streetName']);
+            $addressRegistration->bind(":houseNumber", $userInfo['houseNumber']);
+            $addressRegistration->bind(":addition", $userInfo['addition']);
+
+            $addressRegistration->execute();
+
+            //query voor customer gegevens
+            $addressId = $addressRegistration->lastInsertedId();
+
+
+            $customerRegistration = new Database();
+
+            $customerRegistration->query("INSERT INTO customer (firstname, insertion, lastname, password, email, address, phone, birthdate, active)
+    VALUES (:firstName, :insertion, :lastName, :password, :email, :address, :phoneNumber, :birthdate, :active)");
+
+            $customerRegistration->bind(":firstName", $userInfo['firstName']);
+            $customerRegistration->bind(":insertion", $userInfo['insertion']);
+            $customerRegistration->bind(":lastName", $userInfo['lastName']);
+            $customerRegistration->bind(":password", $userInfo['password']);
+            $customerRegistration->bind(":email", $userInfo['email']);
+            $customerRegistration->bind(":phoneNumber", $userInfo['phoneNumber']);
+            $customerRegistration->bind(":address", $addressId);
+            $customerRegistration->bind(":birthdate", $userInfo['dateOfBirth']);
+            $customerRegistration->bind(":active", 1);
+
+            $customerRegistration->execute();
+        }
+        
         //logout
         public function logout()
         {

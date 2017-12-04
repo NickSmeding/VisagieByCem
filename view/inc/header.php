@@ -48,18 +48,19 @@
                             </span>
                         </div>
                     </a>
-                    <div class="dropdown-menu">
+                    <ul class="dropdown-menu">
                         <?php
                             if(isset($_SESSION["cart"])){
                                 foreach($_SESSION["cart"] as $product_id => $product){  
+                                    
                                     $productInfo = $productClass->selectSingleProduct($product_id);
                                     echo '<form method="post" action="">';
                                     echo '<button style="float:right; margin: 5px" type="submit" class="btn btn-xs btn-danger" name="delete" value="Delete"><i class="fa fa-trash"></i></button>&nbsp;<br>';
-                                        echo '<input type="hidden" name="id" value="'.$productInfo["product_id"].'"/>';   
+                                        echo '<input type="hidden" name="id" value="'.$productInfo["id"].'"/>';   
                                     echo '</form>';
                                     echo '<div class="margin-left-10">';
-                                    echo '<p>'.$productInfo["product_name"].' (x'.$product["quantity"].')</p>';
-                                    echo '<p>prijs: '.($productInfo["product_price"] * $product["quantity"]) / 100 .' euro</p>'; 
+                                    echo '<p>'.$productInfo["name"].' (x'.$product["quantity"].')</p>';
+                                    echo '<p>prijs: '.($productInfo["price"] * $product["quantity"]) / 100 .' euro</p>'; 
                                     echo '</div>';
                                     echo '<li class="divider"></li>';
                                 }
@@ -75,7 +76,7 @@
                                 echo '<div>Er zijn momenteel geen<br> producten gekozen!</div>';
                             }
                         ?>
-                    </div>
+                    </ul>
                 </li>
                 <li>
                     <?php 
@@ -130,7 +131,7 @@
                                                         </form>
                                                     </div>
                                                     <div class="bottom text-center">
-                                                        Nieuw? <a href="registration.php"><b>Register</b></a>
+                                                        Nieuw? <a href="register.php"><b>Register</b></a>
                                                     </div>
                                                 </div>
                                             </li>
@@ -152,7 +153,7 @@
 </nav>
 <nav class="nav navbar navbar-default custom-style">
     <ul class="nav navbar-nav">
-        <li><a href="#">Home</a></li>
+        <li><a href="homepage.php">Home</a></li>
         <li><a href="#">Producten</a></li>
         <li><a href="#">Tarieven</a></li>
         <li><a href="#">Instagram</a></li>
@@ -160,6 +161,3 @@
         <li><a href="#">Contact</a></li>
     </ul>
 </nav>
-<div class="header-img-div mobile">
-    <img  class="header-img" src="../assets/images/brancheheader-kapper.jpg">
-</div>

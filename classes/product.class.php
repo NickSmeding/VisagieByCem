@@ -11,7 +11,7 @@
         public function selectAllProducts()
         {
             $selectAllProducts = new Database();
-            $selectAllProducts->query("SELECT * FROM product INNER JOIN image ON product.img = image.id WHERE active = :active");
+            $selectAllProducts->query("SELECT product.id, product.description, product.category, product.stock, product.name, product.price, product.active, image.path, image.date, image.filename FROM product INNER JOIN image ON product.img = image.id WHERE active = :active");
             $selectAllProducts->bind(":active", 1);
             $selectAllProducts->execute();
             $products = $selectAllProducts->resultset();
