@@ -94,7 +94,7 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <a href="inc/logout.php" id="menu-toggle"><i class="fa fa-sign-out  fa-1x menu-toggle" aria-hidden="true"></i>Logout</a><br>
-                                                        <a href="editaccount.php" id="menu-toggle"><i class="fa fa-cog"  fa-1x menu-toggle" aria-hidden="true"></i>Verander gegevens</a>
+                                                        <a href="usersettings.php" id="menu-toggle"><i class="fa fa-cog"  fa-1x menu-toggle" aria-hidden="true"></i>Verander gegevens</a>
                                                     </div>
                                                 </div>
                                             </li>
@@ -154,7 +154,7 @@
 <nav class="nav navbar navbar-default custom-style">
     <ul class="nav navbar-nav">
         <li><a href="homepage.php">Home</a></li>
-        <li><a href="#">Producten</a></li>
+        <li><a href="products.php">Producten</a></li>
         <li><a href="#">Tarieven</a></li>
         <li><a href="#">Instagram</a></li>
         <li><a href="#">Over mij</a></li>

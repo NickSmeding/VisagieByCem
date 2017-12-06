@@ -11,7 +11,7 @@
         public function selectAllProducts()
         {
             $selectAllProducts = new Database();
-            $selectAllProducts->query("SELECT product.id, product.description, product.category, product.stock, product.name, product.price, product.active, image.path, image.date, image.filename FROM product INNER JOIN image ON product.img = image.id WHERE active = :active");
+            $selectAllProducts->query("SELECT product.id, product.description, product.category, product.stock, product.name, product.price, product.active, image.path, image.date, image.filename FROM product INNER JOIN image ON product.img = image.id WHERE product.active = :active");
             $selectAllProducts->bind(":active", 1);
             $selectAllProducts->execute();
             $products = $selectAllProducts->resultset();
@@ -23,7 +23,7 @@
         public function selectSingleProduct($product_id)
         {
             $selectSingleProduct = new Database();
-            $selectSingleProduct->query("SELECT * FROM product WHERE id = :id AND active = :active");
+            $selectSingleProduct->query("SELECT product.id, product.description, product.category, product.stock, product.name, product.price, product.active, image.path, image.date, image.filename FROM product INNER JOIN image ON product.img = image.id WHERE product.id = :id AND product.active = :active");
             $selectSingleProduct->bind(":id", $product_id);
             $selectSingleProduct->bind(":active", 1);
             $selectSingleProduct->execute();
