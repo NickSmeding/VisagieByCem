@@ -58,10 +58,28 @@
             }
         }
         
+        //haal alleen user op
+        public function selectAllUsers()
+        {
+            $selectAllUsers = new Database();
+            $selectAllUsers->query("SELECT * FROM customer");
+            $selectAllUsers->execute();
+            $users = $selectAllUsers->resultset();
+            
+            return $users;      
+        }
+        
+        
         public function register($userInfo) {
 
             $errorMsg = array();
             $handle = true;
+            
+            //quiery voor het op halen van om te kijken of hij al bestaat
+            $selectAllUsers = new Database();
+            $selectAllUsers->query("SELECT email FROM customer WHERE :email = email");
+            $selectAllUsers->bind(":email", $userInfo['email']);
+            $selectAllUsers->execute();
 
             //validatie voor opgegeven velden als er iets fout is geef error
             if ("" == trim($userInfo['firstName'])) {
@@ -73,10 +91,10 @@
             }if ("" == trim($userInfo['email'])) {
                 $errorMsg['email'] = "Email-adres is verplicht!";
                 $handle = false;
-            } //else if ($selectAllEmailAddresses->rowCount() > 0) {
-            //$errorMsg['email'] = 'Dit e-mail adress is al ingebruik!';
-            //$handle = false;
-            if ("" == trim($userInfo['phoneNumber'])) {
+            }else if($selectAllUsers->rowCount() > 0){
+                $errorMsg['email'] = 'Dit email adress is al ingebruik!';
+                $handle = false;
+            }if ("" == trim($userInfo['phoneNumber'])) {
                 $errorMsg['phoneNumber'] = "Telefoonnummer is verplicht!";
                 $handle = false;
             }if ("" == trim($userInfo['dateOfBirth'])) {
@@ -97,36 +115,44 @@
             }if ("" == trim($userInfo['password'])) {
                 $errorMsg['password'] = "Wachtwoord is verplicht!";
                 $handle = false;
-            } //else if (!($userInfo['password'] == $userInfo['passwordConfirm'])) {
-            // $errorMsg['password'] = "De Wachtwoorden komen niet overeen!";
-            // $handle = false;
-            // else if (strlen(trim($userInfo['password'])) < 8) {
-            //  $errorMsg['password'] = "Het wachtwoord moet minimaal 8 characters lang zijn!";
-            //  $handle = false;
-            //if ("" == trim($userInfo['passwordConfirm'])) {
-            //    $errorMsg['confirmPassword'] = "Wachtwoord herhalen is verplicht!";
-            //  $handle = false;
-            //}
+            }else if (!($userInfo['password'] == $userInfo['confirmPassword'])) {
+                $errorMsg['password'] = "De Wachtwoorden komen niet overeen!";
+                $handle = false;
+            }else if (strlen(trim($userInfo['password'])) < 8) {
+                $errorMsg['password'] = "Het wachtwoord moet minimaal 8 characters lang zijn!";
+                $handle = false;
+            }
             // voor dit uit als handle true is dus als er geen error
+            //controleer of een adres al bestaat in de database
+            
             if ($handle == true) {
                 //query voor address gegevens
+                $checkAddress = new Database();
+                $checkAddress->query("SELECT id FROM Address WHERE zip = :zip AND housenumber = :housenumber AND extension = :extension AND city = :city AND street = :street");
+                $checkAddress->bind(":housenumber", $userInfo['houseNumber']);
+                $checkAddress->bind(":zip", $userInfo['postalCode']);
+                $checkAddress->bind(":extension", $userInfo['addition']);
+                $checkAddress->bind(":city", $userInfo['city']);
+                $checkAddress->bind(":street", $userInfo['streetName']);
+                $checkAddress->execute();
 
-                $addressRegistration = new Database();
+                if($checkAddress->rowCount() <= 0){ 
 
-                $addressRegistration->query("INSERT INTO address (zip, housenumber, extension, city, street)
-        VALUES (:postalCode, :houseNumber, :addition, :city, :streetName)");
+                    //maak nieuw adres
+                    $newAddress = new Database();
+                    $newAddress->query("INSERT INTO Address (zip, housenumber, extension, city, street) VALUES (:zip, :housenumber, :extension, :city, :street)");
+                    $newAddress->bind(":housenumber", $userInfo['houseNumber']);
+                    $newAddress->bind(":zip", $userInfo['postalCode']);
+                    $newAddress->bind(":extension", $userInfo['addition']);
+                    $newAddress->bind(":city", $userInfo['city']);
+                    $newAddress->bind(":street", $userInfo['streetName']);
+                    $newAddress->execute();
 
-                $addressRegistration->bind(":city", $userInfo['city']);
-                $addressRegistration->bind(":postalCode", $userInfo['postalCode']);
-                $addressRegistration->bind(":streetName", $userInfo['streetName']);
-                $addressRegistration->bind(":houseNumber", $userInfo['houseNumber']);
-                $addressRegistration->bind(":addition", $userInfo['addition']);
-
-                $addressRegistration->execute();
-
-                //query voor customer gegevens
-                $addressId = $addressRegistration->lastInsertedId();
-
+                    $addressID = $newAddress->lastInsertedId();
+                }else{
+                    $EXaddress = $checkAddress->single();
+                    $addressID = $EXaddress['id'];
+                }
 
                 $customerRegistration = new Database();
 
@@ -136,14 +162,18 @@
                 $customerRegistration->bind(":firstName", $userInfo['firstName']);
                 $customerRegistration->bind(":insertion", $userInfo['insertion']);
                 $customerRegistration->bind(":lastName", $userInfo['lastName']);
-                $customerRegistration->bind(":password", $this->getHash($userinfo['password'], $userinfo['email']));
+                $customerRegistration->bind(":password", $this->getHash($userInfo['password'], $userInfo['email']));
                 $customerRegistration->bind(":email", $userInfo['email']);
                 $customerRegistration->bind(":phoneNumber", $userInfo['phoneNumber']);
-                $customerRegistration->bind(":address", $addressId);
+                $customerRegistration->bind(":address", $addressID);
                 $customerRegistration->bind(":birthdate", $userInfo['dateOfBirth']);
                 $customerRegistration->bind(":active", 1);
 
                 $customerRegistration->execute();
+                
+                $this->login($userInfo['email'], $userInfo['password']);
+                header("Location: ../index.php");
+                exit();
             } else {
                 return $errorMsg;
             }

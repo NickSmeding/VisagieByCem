@@ -30,11 +30,14 @@
 
                     <div class="col-sm-12"> <!-- Breedte van form -->
 
-                        <!--                            Voornaam, tussenvoegsel en achternaam-->
+                        <!-- Voornaam, tussenvoegsel en achternaam-->
                         <div class="row">
                             <div class="col-sm-4 form-group">
                                 <label for="firstName">Voornaam</label>
                                 <input type="text" placeholder="Typ hier uw voornaam in.." id="firstName" name="firstName" class="form-control" required>
+                                <div class="errMsg">
+                                    <?php if(isset($result['firstName'])){ echo $result['firstName']; } ?>
+                                </div>
                             </div>
                             <div class="col-sm-4 form-group">
                                 <label for="insertion">Tussenvoegsel</label>
