@@ -34,18 +34,24 @@
                         <div class="row">
                             <div class="col-sm-4 form-group">
                                 <label for="firstName">Voornaam</label>
-                                <input type="text" placeholder="Typ hier uw voornaam in.." id="firstName" name="firstName" class="form-control" required>
+                                <input type="text" placeholder="Typ hier uw voornaam in.." id="firstName" name="firstName" class="form-control" required value="<?php if(isset($userInfo["firstName"])){echo($userInfo["firstName"]);} ?>">
                                 <div class="errMsg">
                                     <?php if(isset($result['firstName'])){ echo $result['firstName']; } ?>
                                 </div>
                             </div>
                             <div class="col-sm-4 form-group">
                                 <label for="insertion">Tussenvoegsel</label>
-                                <input type="text" placeholder="Typ hier uw tussenvoegsel in.." id="insertion" name="insertion" class="form-control">
+                                <input type="text" placeholder="Typ hier uw tussenvoegsel in.." id="insertion" name="insertion" class="form-control" value="<?php if(isset($userInfo["email"])){echo($userInfo["email"]);} ?>">
+                                <div class="errMsg">
+                                    <?php if(isset($result['insertion'])){ echo $result['insertion']; } ?>
+                                </div>
                             </div>
                             <div class="col-sm-4 form-group">
                                 <label for="lastName">Achternaam</label>
                                 <input type="text" placeholder="Typ hier uw achternaam in.." id="lastName" name="lastName" class="form-control" required>
+                                <div class="errMsg">
+                                    <?php if(isset($result['lastName'])){ echo $result['lastName']; } ?>
+                                </div>
                             </div>
                         </div>
 

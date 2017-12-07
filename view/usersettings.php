@@ -45,6 +45,7 @@
             }
         }
 
+        if(isset($result['succes'])){ echo $result['succes']; }
         //benodigde informatie laten zien en laten aanpassen//
         ?>
         <div class="container">  
@@ -56,7 +57,7 @@
                             <div class="row">
                             <div class="col-sm-2 form-group">
                                 <label for="userid">Klantnummer</label>
-                                <input type="number" class="form-control" id="userid" readonly value=<?php echo($user['id']); ?>>
+                                <input type="number" class="form-control" id="userid" readonly value=<?php echo($_SESSION['user_id']); ?>>
                             </div></div>
                             <div class="row">
                             <div class="col-sm-4 form-group">

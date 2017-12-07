@@ -185,6 +185,7 @@
             $errorMsg = array();
             $handle = true;
             $user = $this->getUserData($user_id);
+            $input_password = $this->getHash($userinfo['oldpass'], $userinfo['e-mail']); 
             
             //validatie voor opgegeven gegevens
             if("" == trim($userinfo['firstname'])){
@@ -205,17 +206,12 @@
             }if("" == trim($userinfo['city'])){
                 $errorMsg['city'] = "Plaats is verplicht!";
                 $handle = false;
-            }if("" == trim($userinfo['newpass'])){
-                
-                $input_password = $this->getHash($userinfo['oldpass'], $userinfo['e-mail']);  
-                
-                if (!($user['password'] == $input_password)) {
-                    $errorMsg['password'] = "het oude wachtwoord komt niet overeen!";
-                    $handle = false;
-                }
-            }else{
+            }if (!($user['password'] == $input_password)) {
+                $errorMsg['oldpass'] = "het oude wachtwoord komt niet overeen!";
+                $handle = false;
+            }if(!("" == trim($userinfo['newpass']))){
                 if(strlen(trim($userinfo['newpass'])) < 8){
-                    $errorMsg['password'] = "Wachtwoord te kort!";
+                    $errorMsg['newpass'] = "Wachtwoord te kort!";
                     $handle = false;
                 }else{
                     $input_password = $this->getHash($userinfo['newpass'], $userinfo['e-mail']); 
@@ -267,6 +263,8 @@
                 $updateUser->bind(":pass", $input_password);
                 $updateUser->execute();
                 
+                $msg['succes'] = "Update is gelukt!";
+                return $msg;
                 //header("Location: admin.users.php");
                 //exit();
             }else{
