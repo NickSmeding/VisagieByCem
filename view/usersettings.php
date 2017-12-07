@@ -18,7 +18,7 @@
     $user = $userClass->getUserData($_SESSION['user_id']);
     
     if (isset($_POST['updatesettings'])) {
-        $result = $userClass->userUpdate($_POST, $user['id']);
+        $result = $userClass->userUpdate($_POST, $_SESSION['user_id']);
     }
 
     include_once('inc/header.php');
