@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Machine: 127.0.0.1
--- Gegenereerd op: 23 nov 2017 om 12:41
+-- Gegenereerd op: 07 dec 2017 om 13:13
 -- Serverversie: 5.6.21
 -- PHP-versie: 5.6.3
 
@@ -33,14 +33,19 @@ CREATE TABLE IF NOT EXISTS `address` (
   `extension` varchar(4) DEFAULT NULL,
   `city` varchar(64) NOT NULL,
   `street` varchar(64) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `address`
 --
 
 INSERT INTO `address` (`id`, `zip`, `housenumber`, `extension`, `city`, `street`) VALUES
-(1, '7897GR', 23, 'B', 'Dronten', 'straatnaam');
+(1, '7897GR', 23, 'B', 'Dronten', 'straatnaam'),
+(2, '3458RN', 34, '', 'rotterdam', '34'),
+(3, '7897GR', 23, 'C', 'Dronten', 'straatnaam'),
+(4, '7897GR', 24, 'B', 'Dronten', 'straatnaam'),
+(5, '8253GR', 23, 'B', 'Dronten', 'Zilversmedengilde'),
+(6, '9264 TP', 3, 'B', 'EarnewÃ¢ld', 'Koaidyk 8a');
 
 -- --------------------------------------------------------
 
@@ -77,14 +82,15 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `address` int(4) NOT NULL,
   `birthdate` date NOT NULL,
   `active` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `customer`
 --
 
 INSERT INTO `customer` (`id`, `firstname`, `insertion`, `lastname`, `email`, `password`, `phone`, `address`, `birthdate`, `active`) VALUES
-(1, 'nick', '', 'smeding', 'nicksmeding95@gmail.com', 'f6783a6675d27be87f589edf8e98fc3a3a9b58b309fa8f091f85337b5e49ab44', '', 1, '0000-00-00', 0);
+(1, 'nick', '', 'smeding', 'nicksmeding95@gmail.com', 'be84db6d078481afaed85c59f47fb5944d76256b3bd6d62b3aa0a243012a20ef', '0611680764', 3, '2017-12-05', 1),
+(7, 'martijn', '', 'van koeien', 'martijnvankoeien@gmail.com', '', '645353463', 2, '0000-00-00', 1);
 
 -- --------------------------------------------------------
 
@@ -113,7 +119,14 @@ CREATE TABLE IF NOT EXISTS `image` (
   `path` varchar(64) NOT NULL,
   `date` date NOT NULL,
   `filename` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `image`
+--
+
+INSERT INTO `image` (`id`, `path`, `date`, `filename`) VALUES
+(1, '\\assets\\uploads\\', '2017-12-01', 'kangaroo.jpg');
 
 -- --------------------------------------------------------
 
@@ -180,8 +193,8 @@ CREATE TABLE IF NOT EXISTS `product` (
 --
 
 INSERT INTO `product` (`id`, `img`, `description`, `category`, `stock`, `name`, `price`, `active`) VALUES
-(1, NULL, 'beste verf voor je haar', 1, 20, 'haar verf', 5.75, 1),
-(2, NULL, 'een mooie haar strik', 1, 420, 'haar strikje', 12.44, 1);
+(1, 1, 'beste verf voor je haar', 1, 20, 'haar verf', 575, 1),
+(2, 1, 'een mooie haar strik', 1, 420, 'haar strikje', 1244, 1);
 
 -- --------------------------------------------------------
 
@@ -274,7 +287,7 @@ ALTER TABLE `shipping`
 -- AUTO_INCREMENT voor een tabel `address`
 --
 ALTER TABLE `address`
-MODIFY `id` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT voor een tabel `category`
 --
@@ -284,7 +297,7 @@ MODIFY `id` int(2) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT voor een tabel `customer`
 --
 ALTER TABLE `customer`
-MODIFY `id` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT voor een tabel `employee`
 --
@@ -294,7 +307,7 @@ MODIFY `id` int(4) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT voor een tabel `image`
 --
 ALTER TABLE `image`
-MODIFY `id` int(8) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT voor een tabel `invoice`
 --

@@ -136,7 +136,7 @@
                 $customerRegistration->bind(":firstName", $userInfo['firstName']);
                 $customerRegistration->bind(":insertion", $userInfo['insertion']);
                 $customerRegistration->bind(":lastName", $userInfo['lastName']);
-                $customerRegistration->bind(":password", $this->getHash($userinfo['password'], $userinfo['email']);
+                $customerRegistration->bind(":password", $this->getHash($userinfo['password'], $userinfo['email']));
                 $customerRegistration->bind(":email", $userInfo['email']);
                 $customerRegistration->bind(":phoneNumber", $userInfo['phoneNumber']);
                 $customerRegistration->bind(":address", $addressId);
