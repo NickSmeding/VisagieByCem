@@ -4,9 +4,10 @@
     if(isset($_POST['submitLogin'])){       
         $email = $_POST['email'];
         $password = $_POST['password'];
+        $admin = false;
         $errorMsg = "";
         
-        if ($user_id = $userClass->login($email, $password)) {
+        if ($user_id = $userClass->login($email, $password, $admin)) {
             //logged in
         }else {
             $errorMsg = 'Incorrecte gegevens!<br>';
@@ -104,7 +105,7 @@
                             }else{
                                 echo '<ul class="nav navbar-nav navbar-right dropdown-button">';
                                 echo'
-                                    <li class="dropdown">
+                                    <li class="dropdown open">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>
                                     Login
                                         </b> <span class="productet"></span></a>

@@ -7,3 +7,4 @@ $("button").click(function() {
      $("#product_name").text(product_name);
      $("#product_price").text("prijs: " + product_price + " euro");
 });
+

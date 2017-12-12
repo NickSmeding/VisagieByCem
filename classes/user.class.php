@@ -12,22 +12,39 @@
         }
         
         //probeer in teloggen met opgegeven gegevens
-        public function login($email, $password)
+        public function login($email, $password, $admin)
         {
             $this->email = $email;
-            $this->password = $password; 
-            //bekijk of user gegevens kloppen
-            $user = $this->checkLoginUser();
+            $this->password = $password;  
             
-            //als user gegevens kloppen sla dan user id op in een session (je bent ingelogd)
-            if ($user) {
-                $this->user = $user; 
-                $_SESSION['user_id'] = $user['id'];
+            if($admin){
+                //bekijk of user gegevens kloppen
+                $admin = $this->checkLoginAdmin();
+
+                //als admin gegevens kloppen sla dan user id op in een session (je bent ingelogd)
+                if ($admin) {
+                    $this->admin = $admin; 
+                    $_SESSION['admin_id'] = $admin['id'];
+
+                    return $admin['id'];
+                }
+
+                return false;
                 
-                return $user['id'];
+            }else{
+                //bekijk of user gegevens kloppen
+                $user = $this->checkLoginUser();
+
+                //als user gegevens kloppen sla dan user id op in een session (je bent ingelogd)
+                if ($user) {
+                    $this->user = $user; 
+                    $_SESSION['user_id'] = $user['id'];
+
+                    return $user['id'];
+                }
+
+                return false;
             }
-            
-            return false;
         }
 
         //controleer opgeven gegevens
@@ -48,10 +65,38 @@
             return false;
         }
         
-        //kijk of er iemand ingelogd is
+        //controleer opgeven gegevens
+        private function checkLoginAdmin()
+        {
+            $db = new Database();
+            $db->query("SELECT * FROM employee WHERE email = :email");
+            $db->bind(":email", $this->getEmail());
+            $db->execute();
+            if ($db->rowCount() > 0) {
+                $admin = $db->single();
+                $input_password = $this->getHash($this->getPassword(), $this->getEmail());  
+                if ($input_password == $admin['password']) {
+                    return $admin;
+                }
+            }
+            
+            return false;
+        }
+        
+        //kijk of er customer ingelogd is
         public function checkUser()
         {
             if(isset($_SESSION['user_id'])){
+                return true;
+            }else{
+                return false;    
+            }
+        }
+        
+        //kijk of er admin ingelogd is
+        public function checkAdmin()
+        {
+            if(isset($_SESSION['admin_id'])){
                 return true;
             }else{
                 return false;    
@@ -201,7 +246,7 @@
                 $errorMsg['e-mail'] = "Email is verplicht!";
                 $handle = false;
             }if("" == trim($userinfo['phone'])){
-                $errorMsg['phone'] = "Telefoon nummer is verplicht!";
+                $errorMsg['phone'] = "Telefoonnummer is verplicht!";
                 $handle = false;
             }if("" == trim($userinfo['city'])){
                 $errorMsg['city'] = "Plaats is verplicht!";

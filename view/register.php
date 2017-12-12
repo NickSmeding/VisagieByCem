@@ -9,6 +9,8 @@
 
     $userClass = new User(); //Maakt verbinding met class user zodat je alle functions kan gebruiken uit user.class.php
 
+    $productClass = new Product();
+
     /* Als er op Submit wordt gedrukt -> worden de postgegevens in een variable userInfo gezet ->
      * daarna wordt de function in gebruik gesteld. De query's staan in user.class.php, die worden
      * uitgevoerd in de function register. $result is het resultaat van deze algoritme. (stap 3)  */
