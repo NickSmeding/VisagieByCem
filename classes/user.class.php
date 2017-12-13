@@ -127,6 +127,7 @@
             $selectAllUsers->execute();
 
             //validatie voor opgegeven velden als er iets fout is geef error
+            //voor optimaal gebruik van classes graag een validate class aanmaken wanneer er tijd voor is
             if ("" == trim($userInfo['firstName'])) {
                 $errorMsg['firstName'] = "Voornaam is verplicht!";
                 $handle = false;
@@ -166,7 +167,11 @@
             }else if (strlen(trim($userInfo['password'])) < 8) {
                 $errorMsg['password'] = "Het wachtwoord moet minimaal 8 characters lang zijn!";
                 $handle = false;
+            }else if(!(preg_match('/[^\x20-\x7f]/', $userInfo['password']))){
+                $errorMsg['password'] = "Het wachtwoord moet minimaal een character hebben dat geen nummer of letter is!";
+                $handle = false;
             }
+            
             // voor dit uit als handle true is dus als er geen error
             //controleer of een adres al bestaat in de database
             
@@ -216,7 +221,7 @@
 
                 $customerRegistration->execute();
                 
-                $this->login($userInfo['email'], $userInfo['password']);
+                $this->login($userInfo['email'], $userInfo['password'], false);
                 header("Location: ../index.php");
                 exit();
             } else {
@@ -257,6 +262,9 @@
             }if(!("" == trim($userinfo['newpass']))){
                 if(strlen(trim($userinfo['newpass'])) < 8){
                     $errorMsg['newpass'] = "Wachtwoord te kort!";
+                    $handle = false;
+                }else if(!(preg_match('/[^\x20-\x7f]/', $userInfo['newpass']))){
+                    $errorMsg['newpass'] = "Het wachtwoord moet minimaal een character hebben dat geen nummer of letter is!";
                     $handle = false;
                 }else{
                     $input_password = $this->getHash($userinfo['newpass'], $userinfo['e-mail']); 

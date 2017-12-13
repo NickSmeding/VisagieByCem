@@ -8,3 +8,42 @@ $("button").click(function() {
      $("#product_price").text("prijs: " + product_price + " euro");
 });
 
+//dataTable
+$("#example").dataTable({
+    "columns": [
+    { "width": "10%" },
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+    responsive: true,
+    aLengthMenu: [
+        [10, 25, 50, 100, -1],
+        [10, 25, 50, 100, "All"]
+    ]
+});
+
+$("#example1").dataTable({
+    responsive: true,
+    aLengthMenu: [
+        [10, 25, 50, 100, -1],
+        [10, 25, 50, 100, "All"]
+    ]
+});
+
+$("#example2").dataTable({
+    "columns": [
+    { "width": "10%" },
+    null,
+    null,
+    null,
+    { "width": "10%" }
+  ],
+    responsive: true,
+    aLengthMenu: [
+        [10, 25, 50, 100, -1],
+        [10, 25, 50, 100, "All"]
+    ]
+});

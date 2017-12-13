@@ -41,7 +41,7 @@
                             <span class="badge">
                                 <?php
                                     if(isset($_SESSION['cart'])){
-                                        echo count($_SESSION['cart']);    
+                                        echo array_sum(array_column($_SESSION['cart'], 'quantity'));
                                     }else{
                                         echo '0';   
                                     }
