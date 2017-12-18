@@ -17,6 +17,7 @@
     <script src="../assets/plugins/JQuery/jquery-ui.min.js" type="text/javascript"></script> 
     <script src="../assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script> 
     <script src="../assets/js/jasny-bootstrap.min.js" type="text/javascript"></script> 
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <script src="../assets/js/scripts.js" type="text/javascript"></script> 
     <!-- CORE JS - END --> 
     

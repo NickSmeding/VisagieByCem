@@ -167,8 +167,11 @@
             }else if (strlen(trim($userInfo['password'])) < 8) {
                 $errorMsg['password'] = "Het wachtwoord moet minimaal 8 characters lang zijn!";
                 $handle = false;
-            }else if(!(preg_match('/[^\x20-\x7f]/', $userInfo['password']))){
+            }else if(!(preg_match('/[^0-9a-z\.\&\@]/i', $userInfo['password']))){
                 $errorMsg['password'] = "Het wachtwoord moet minimaal een character hebben dat geen nummer of letter is!";
+                $handle = false;
+            }if(!$userInfo['g-recaptcha-response']){
+                $errorMsg['robot'] = "Klik de ik ben geen robot knop aan!";
                 $handle = false;
             }
             
@@ -235,7 +238,7 @@
             $errorMsg = array();
             $handle = true;
             $user = $this->getUserData($user_id);
-            $input_password = $this->getHash($userinfo['oldpass'], $userinfo['e-mail']); 
+            $input_password = $this->getHash($userinfo['oldpass'], $user['email']); 
             
             //validatie voor opgegeven gegevens
             if("" == trim($userinfo['firstname'])){
@@ -263,12 +266,14 @@
                 if(strlen(trim($userinfo['newpass'])) < 8){
                     $errorMsg['newpass'] = "Wachtwoord te kort!";
                     $handle = false;
-                }else if(!(preg_match('/[^\x20-\x7f]/', $userInfo['newpass']))){
+                }else if(!(preg_match('/[^0-9a-z\.\&\@]/i', $userinfo['newpass']))){
                     $errorMsg['newpass'] = "Het wachtwoord moet minimaal een character hebben dat geen nummer of letter is!";
                     $handle = false;
                 }else{
                     $input_password = $this->getHash($userinfo['newpass'], $userinfo['e-mail']); 
                 }            
+            }else{
+                $input_password = $this->getHash($userinfo['oldpass'], $userinfo['e-mail']);     
             }
             
             // als handle niet false is en er dus geen errors zijn update dan de user

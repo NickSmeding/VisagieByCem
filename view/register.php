@@ -19,6 +19,7 @@
     /* Als er op Submit wordt gedrukt -> worden de postgegevens in een variable userInfo gezet ->
      * daarna wordt de function in gebruik gesteld. De query's staan in user.class.php, die worden
      * uitgevoerd in de function register. $result is het resultaat van deze algoritme. (stap 3)  */
+
     if (isset($_POST['submitRegister'])) {
         $userInfo = $_POST;
         $result = $userClass->register($userInfo);
@@ -41,7 +42,7 @@
                         <div class="row">
                             <div class="col-sm-4 form-group">
                                 <label for="firstName">Voornaam</label>
-                                <input type="text" placeholder="Typ hier uw voornaam in.." id="firstName" name="firstName" class="form-control" required value="<?php if(isset($userInfo["firstName"])){echo($userInfo["firstName"]);} ?>">
+                                <input type="text" id="firstName" name="firstName" class="form-control" required value="<?php if(isset($userInfo["firstName"])){echo($userInfo["firstName"]);} ?>">
                                 <div class="errMsg">
                                     <?php if(isset($result['firstName'])){ echo $result['firstName']; } ?>
                                 </div>
@@ -155,14 +156,12 @@
                             </div>
                         </div>
 
-                        <?php
-//echo $result["password"];
-                        ?>
-
-
-
-
-
+                        <div class="g-recaptcha" data-sitekey="6Lek5DwUAAAAAGVI2OoG80e1umeXUh3G-RDPE3b_"></div>
+                        <div class="errMsg">
+                            <?php if(isset($result['robot'])){ echo $result['robot']; } ?>
+                        </div>
+                        <br>
+                            
                         <input type="submit" name="submitRegister" id="submitRegister" class="btn btn-lg btn-info" value="Registeren"> <!-- submit alle gegevens naar de POST (stap 2) -->
                     </div>
                 </form>
