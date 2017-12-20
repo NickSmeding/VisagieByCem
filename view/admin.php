@@ -55,7 +55,9 @@
                                 <input type="password" name="password" id="password" placeholder="Typ hier uw e-mailadres in.." class="form-control">
                             </div>
                         </div>
-                        
+                        <div class="errMsg">
+                        <?php if(isset($errorMsg)){ echo $errorMsg.'<br>'; } ?>
+                        </div>
                         <!--submit inlog-->
                         <div class="row"> <!--Maakt een aparte kolom voor wachtwoord-->
                             <div class="col-xs-8 col-sm-6 col-md-6 col-lg-6 form-group" style="color: white">

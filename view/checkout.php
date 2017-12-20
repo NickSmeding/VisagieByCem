@@ -47,7 +47,7 @@
                                         $productInfo = $productClass->selectSingleProduct($product_id);
 
                                          echo '<tr>';
-                                            echo '<td><img class="cart-img" src="../'.$productInfo['path'].$productInfo['filename'].'"></td>';
+                                            echo '<td><img class="cart-img" src="'.$productInfo['path'].$productInfo['filename'].'"></td>';
                                             echo '<td>'.$productInfo["name"].'</td>';
                                             echo '<td>'.($productInfo["price"] / 100).' euro</td>';
                                             echo '<td>'.$product['quantity'].' x</td>';

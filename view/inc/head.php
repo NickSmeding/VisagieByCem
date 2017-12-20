@@ -18,7 +18,6 @@
     <script src="../assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script> 
     <script src="../assets/js/jasny-bootstrap.min.js" type="text/javascript"></script> 
     <script src='https://www.google.com/recaptcha/api.js'></script>
-    <script src="../assets/js/scripts.js" type="text/javascript"></script> 
     <!-- CORE JS - END --> 
     
     <!-- SCRIPT DATATABLES  - START --> 
@@ -27,6 +26,10 @@
     <script src="../assets/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js" type="text/javascript"></script>
     <script src="../assets/plugins/datatables/extensions/Responsive/bootstrap/3/dataTables.bootstrap.js" type="text/javascript"></script>
     <!-- SCRIPT DATATABLES  - END -->
+    
+    <!-- CUSTOM JS - START -->
+    <script src="../assets/js/scripts.js" type="text/javascript"></script> 
+    <!-- CUSTOM JS - END -->
 
     <!-- CORE CSS - START -->
     <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>

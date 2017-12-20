@@ -1,7 +1,9 @@
 <?php
     $userClass = new User();
     $cartClass = new Cart();
-    if(isset($_POST['submitLogin'])){       
+
+    if(isset($_POST['submitLogin'])){    
+        
         $email = $_POST['email'];
         $password = $_POST['password'];
         $admin = false;
@@ -146,7 +148,7 @@
             </ul>
             <ul class="mobile-nav">
                 <li>
-                lgon
+                login
                 </li>
             </ul>
         </div>
@@ -157,7 +159,7 @@
         <li><a href="homepage.php">Home</a></li>
         <li><a href="products.php">Producten</a></li>
         <li><a href="#">Tarieven</a></li>
-        <li><a href="#">Instagram</a></li>
+        <li><a href="instagram.php">Instagram</a></li>
         <li><a href="#">Over mij</a></li>
         <li><a href="#">Contact</a></li>
     </ul>

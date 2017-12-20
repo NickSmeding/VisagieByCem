@@ -307,3 +307,56 @@ font-weight: bold;
     max-width: 100%;
     height: auto;
 }
+
+ /*show users page*/
+
+.row-c {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: auto;
+}
+
+.titel{
+    color: #FF1493;
+    font-size: 200%;
+    margin-top: 20px;
+    font-family: "Arial Black"
+}
+
+.titel2{
+    color: #FF1493;
+    font-family: "Arial Black"
+}
+
+/* START - top bar admin*/
+.navbar-custom {
+    background-color: white;
+    border-radius:0;
+}
+
+.color-roze{
+    color: #ed2966;
+}
+/* END - top bar admin*/
+
+/* START - form icons*/
+/* enable absolute positioning */
+.inner-addon { 
+    position: relative; 
+}
+
+/* style icon */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* align icon */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+/* END - form icons*/

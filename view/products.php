@@ -54,7 +54,7 @@
                                     echo "</div>";
                                 echo "</div>";
                                 echo "<div class='col-md-6 padding-15'>";
-                                    echo '<img  class="product-img" src="../'.$product['path'].$product['filename'].'">';
+                                    echo '<img  class="product-img" src="'.$product['path'].$product['filename'].'">';
                                 echo "</div>";
                             echo "</div>";
                         echo "</button>";
@@ -85,9 +85,9 @@
                     </div>
                     <form class="form" role="form" method="post" enctype="multipart/form-data">
                         <div class="modal-body">
-                            <h4 class="modal-title" id="product_name"></h4>
+                            <h4 class="modal-title" id="name"></h4>
                             <div id="product_price"></div>
-                            <input type="text" name="product_id" id="product_id" value="" style="display:none"/>
+                            <input type="text" name="product_id" id="id" value="" style="display:none"/>
                             Aantal: <input type="number" name="quantity" id="quantity" min="1" value="1"/>
                         </div>
                         <div class="modal-footer">

@@ -66,7 +66,7 @@
                     $price = $product['price'] / 100;
 
                     echo '<div class="col-md-3 col-xs-3 single-product">';
-                        echo '<br><img  class="product-img" src="../'.$product['path'].$product['filename'].'"><br>';
+                        echo '<br><img  class="product-img" src="'.$product['path'].$product['filename'].'"><br>';
                             echo 'Naam: ';
                             echo $product['name'];
                             echo'<button type="button" class="btn btn2 float-right" id="product-model" data-toggle="modal" data-id="'.$product["id"].'" data-name="'.$product['name'].'" data-price="'.$price.'" data-target="#myModal">Bestellen</button>';
@@ -94,9 +94,9 @@
             </div>
             <form class="form" role="form" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
-                    <h4 class="modal-title" id="product_name"></h4>
+                    <h4 class="modal-title" id="name"></h4>
                     <div id="product_price"></div>
-                    <input type="text" name="product_id" id="product_id" value="" style="display:none"/>
+                    <input type="text" name="product_id" id="id" value="" style="display:none"/>
                     Aantal: <input type="number" name="quantity" id="quantity" min="1" value="1"/>
                 </div>
                 <div class="modal-footer">

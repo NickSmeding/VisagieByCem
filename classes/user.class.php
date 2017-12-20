@@ -331,11 +331,14 @@
         }
         
         //logout
-        public function logout()
+        public function logout($admin)
         {
-            session_start();
 
-            unset($_SESSION['user_id']);  
+            if($admin){
+                unset($_SESSION['admin_id']);
+            }else{
+                unset($_SESSION['user_id']);  
+            }
             
             header("Location: ../../index.php");
             exit();
