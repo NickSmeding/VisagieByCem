@@ -8,7 +8,7 @@
           
         }
         
-        //haalt alleen producten op.
+        //haalt alleen active producten op
         public function selectAllProducts()
         {
             $selectAllProducts = new Database();
@@ -124,6 +124,15 @@
             }else{
                 return $error;
             }
+        }
+        
+        public function disableProduct($id)
+        {
+            $disableProduct = new Database();
+            $disableProduct->query("UPDATE product SET active = :active WHERE id = :id");
+            $disableProduct->bind(":active", 0);
+            $disableProduct->bind(":id", $id);
+            $disableProduct->execute();
         }
     }
 ?>

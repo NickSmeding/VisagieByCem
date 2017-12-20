@@ -6,7 +6,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="copyright_text"><br />
-                                <p class=" wow fadeInRight" data-wow-duration="1s">Copyright © 2017 - Visagie By Cem</p>
+                                <p class=" wow fadeInRight" data-wow-duration="1s">2017 - Visagie By Cem</p>
                             </div>
                         </div>
                     </div>

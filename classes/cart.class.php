@@ -17,5 +17,34 @@
         {
             unset($_SESSION["cart"][$product_id]);   
         }
+        
+        //het afhandelen van het winkelwagentje
+        public function checkoutCart($shipping){
+
+            $userClass = new User();
+            
+            //is er iemand ingelogd ja of nee
+            if($userClass->checkUser()){
+                //zit er wat in het winkelwagentje ja of nee
+                if(isset($_SESSION["cart"]) && count($_SESSION['cart']) > 0){
+                    
+                    //voeg factuur toe
+                    $invoiceClass = new Invoice();
+                    $invoiceId = $invoiceClass->insertInvoice($shipping);
+                    
+                    //voeg factuur regels toe 
+                    if(isset($invoiceId)){
+                        $invoiceClass->insertInvoiceLine($invoiceId);
+                    }
+                    
+                }else{
+                    $error = "U heeft geen product toegevoegd!"; 
+                    return $error;
+                }
+            }else{
+                $error = "U bent niet ingelogd!";
+                return $error;
+            }
+        }
     }
 ?>

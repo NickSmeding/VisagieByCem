@@ -5,14 +5,18 @@
     include_once('../classes/user.class.php');
     include_once('../classes/product.class.php');
     include_once('../classes/cart.class.php');
+    include_once('../classes/shipping.class.php');
+    include_once('../classes/invoice.class.php');
 
+    $shippingClass = new Shipping();
     $productClass = new Product();
+    $cartClass = new Cart();
+
     $products = $productClass->selectAllProducts();
 
     if(isset($_POST['checkout']))
     {
-        //$checkoutClass = new Checkout();
-        //$checkoutMsg = $checkoutClass->checkoutCart($_POST['shop']);
+        $checkoutMsg = $cartClass->checkoutCart($_POST['shipping']);
     }
         
     include_once('inc/header.php');
@@ -24,9 +28,9 @@
                 <div class="col-md-12">
                     <div class="errMsg">
                         <?php
-                            //if(isset($checkoutMsg)){
-                            //    echo $checkoutMsg;    
-                            //}
+                            if(isset($checkoutMsg)){
+                                echo $checkoutMsg;    
+                            }
                         ?>
                     </div>
                     <table id="example" class="table table-striped dt-responsive display" cellspacing="0" width="100%">
@@ -63,6 +67,23 @@
                         </tbody>
                     </table>
                 </div>
+                <form class="form" role="form" method="post" enctype="multipart/form-data">
+                    <div class="col-md-12">
+                    <label for="shipping">Verzend methode: </label>
+                    <select name="shipping">
+                        <?php
+                            $shipping = $shippingClass->selectAllShipping();
+                                var_dump($categories);
+                            foreach($shipping as $methods){
+                                echo '<option value="'.$methods["method"].'">'.$methods["method"].' '.($methods["fee"] / 100).' euro</option>';
+                            }
+                        ?>
+                    </select>
+                        </div>
+                    <div class="col-md-1">
+                        <input type="submit" name="checkout" class="btn btn2" value="Bestellen">
+                    </div>
+                </form>
                 <div class="col-md-1">
                     <a href="products.php" class="btn btn2">Verder winkelen</a>
                 </div>

@@ -58,7 +58,7 @@
             ?>
         </div>
         <div class="col-sm-12">
-            <br><h2><b>Meest bekeken <span>producten</span></b></h2><br>
+            <?php if(!empty($products)){ echo "<br><h2><b>Meest bekeken <span>producten</span></b></h2><br>"; } ?>
             <?php
                 $i = 0;
 
@@ -68,7 +68,7 @@
                     echo '<div class="col-md-3 col-xs-3 single-product">';
                         echo '<br><img  class="product-img" src="'.$product['path'].$product['filename'].'"><br>';
                             echo 'Naam: ';
-                            echo $product['name'];
+                            echo $product['name'].' ';
                             echo'<button type="button" class="btn btn2 float-right" id="product-model" data-toggle="modal" data-id="'.$product["id"].'" data-name="'.$product['name'].'" data-price="'.$price.'" data-target="#myModal">Bestellen</button>';
                             echo '<br>';
                             echo '<div class="bottom-single-product">';

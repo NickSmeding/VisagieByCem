@@ -160,7 +160,6 @@
         <li><a href="products.php">Producten</a></li>
         <li><a href="#">Tarieven</a></li>
         <li><a href="instagram.php">Instagram</a></li>
-        <li><a href="#">Over mij</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="contact.php">Contact</a></li>
     </ul>
 </nav>

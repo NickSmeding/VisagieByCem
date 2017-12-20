@@ -3,9 +3,9 @@
         <div class="container-fluid">
             <div class="col-md-5" style="margin-top:10px">
                 <a class="btn color-roze" href="admin.orders.php">Bestellingen</a>
-                <a class="btn color-roze" href="admin.users.php">Gebruikers</a>
+                <a class="btn color-roze" href="admin.userlist.php">Gebruikers</a>
                 <a class="btn color-roze" href="adminProductOverview.php">Artikelen</a>
-                <a class="btn color-roze" href="admin.birthday.php">Categorieën</a>
+                <a class="btn color-roze" href="admin.categories.php">Categorieën</a>
             </div>
             <div class="col-md-2 centered">
                 <div class="brand">

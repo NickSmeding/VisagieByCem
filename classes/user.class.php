@@ -107,7 +107,7 @@
         public function selectAllUsers()
         {
             $selectAllUsers = new Database();
-            $selectAllUsers->query("SELECT * FROM customer");
+            $selectAllUsers->query("SELECT *, customer.id AS customerid FROM customer JOIN Address ON customer.address = address.id");
             $selectAllUsers->execute();
             $users = $selectAllUsers->resultset();
             
@@ -348,13 +348,32 @@
         public function getUserData($user_id)
         {  
             $userData = new Database();
-            $userData->query("SELECT * FROM customer INNER JOIN address ON customer.address = address.id WHERE customer.id = :id");
+            $userData->query("SELECT *, customer.id as customerid FROM customer INNER JOIN address ON customer.address = address.id WHERE customer.id = :id");
             $userData->bind(":id", $user_id);
             $userData->execute();
             if ($userData->rowCount() > 0) {
                 $user = $userData->single();
                 return $user;
             }
+        }
+        
+         //kijk welke rechten een admin heeft
+        public function getAdminData($current){
+            $AdminData = new Database();
+            $AdminData->query("SELECT * FROM employee WHERE id=:current");
+            $AdminData->bind(":current", $current);
+            $AdminData->execute();
+            $admin = $AdminData->single();
+            
+            return $admin;
+        }
+        
+        //verwijderen user
+        public function deleteUser($userid){
+            $delete = new Database();
+            $delete->query("DELETE FROM customer WHERE id=:userid");
+            $delete->bind(":userid", $userid);
+            $delete->execute();
         }
         
         //functie om wachtwoord te hashen
