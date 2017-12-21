@@ -33,7 +33,7 @@
                             }
                         ?>
                     </div>
-                    <table id="example" class="table table-striped dt-responsive display" cellspacing="0" width="100%">
+                    <table id="example1" class="table table-striped dt-responsive display" cellspacing="0" width="100%">
                        <thead>
                             <tr>
                                 <th>Foto:</th>
