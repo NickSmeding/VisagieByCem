@@ -339,14 +339,14 @@
             $getActive->execute();
             $userActive = $getActive->single();
             if (isset($_POST['status'])){
-                if ($userActive['active'] == 0){
+                if ($userActive['active'] == 1){
                     $activate = new Database();
-                    $activate->query("UPDATE Customer SET active = 1 WHERE id = :userid");
+                    $activate->query("UPDATE Customer SET active = 2 WHERE id = :userid");
                     $activate->bind("userid", $userid);
                     $activate->execute();
                 }else{
                     $deactivate = new Database();
-                    $deactivate->query("UPDATE Customer SET active = 0 WHERE id = :userid");
+                    $deactivate->query("UPDATE Customer SET active = 1 WHERE id = :userid");
                     $deactivate->bind("userid", $userid);
                     $deactivate->execute();
                 }

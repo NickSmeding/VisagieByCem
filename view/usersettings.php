@@ -47,7 +47,7 @@
                             <div class="row">
                             <div class="col-sm-4 form-group">
                                 <label for="firstname">Voornaam</label>
-                                <input required type="text" class="form-control" id="firstname" name="firstname" <?php if($user["active"]==0){ echo("readonly");} ?> value="<?php echo($user["firstname"]); ?>"> 
+                                <input required type="text" class="form-control" id="firstname" name="firstname" <?php if($user["active"]==1){ echo("readonly");} ?> value="<?php echo($user["firstname"]); ?>"> 
                                 <div class="errMsg">
                                     <?php if(isset($result['firstname'])){ echo $result['firstname']; } ?>
                                 </div>
@@ -55,7 +55,7 @@
                             
                             <div class="col-sm-4 form-group">
                                 <label for="insertion">Tussenvoegsel</label>
-                                <input type="text" class="form-control" id="insertion" name="insertion" <?php if($user["active"]==0){ echo("readonly");} ?> value="<?php echo($user["insertion"]); ?>">
+                                <input type="text" class="form-control" id="insertion" name="insertion" <?php if($user["active"]==1){ echo("readonly");} ?> value="<?php echo($user["insertion"]); ?>">
                                 <div class="errMsg">
                                     <?php if(isset($result['insertion'])){ echo $result['insertion']; } ?>
                                 </div>
@@ -63,14 +63,14 @@
                             
                             <div class="col-sm-4 form-group">
                                 <label for="lastname">Achternaam</label>
-                                <input required type="text" class="form-control" id="lastname" name="lastname" <?php if($user["active"]==0){ echo("readonly");} ?> value="<?php echo($user["lastname"]); ?>">
+                                <input required type="text" class="form-control" id="lastname" name="lastname" <?php if($user["active"]==1){ echo("readonly");} ?> value="<?php echo($user["lastname"]); ?>">
                                 <div class="errMsg">
                                     <?php if(isset($result['lastname'])){ echo $result['lastname']; } ?>
                                 </div>
                             </div></div>
                             <div class="form-group">
                                 <label for="email">emailadres</label>
-                                <input required type="email" class="form-control" id="e-mail" name="e-mail" <?php if($user["active"]==0){ echo("readonly");} ?> value="<?php echo($user["email"]); ?>">
+                                <input required type="email" class="form-control" id="email" name="email" <?php if($user["active"]==1){ echo("readonly");} ?> value="<?php echo($user["email"]); ?>">
                                 <div class="errMsg">
                                     <?php if(isset($result['email'])){ echo $result['email']; } ?>
                                 </div>
@@ -78,7 +78,7 @@
                             <div class="row">
                             <div class="col-sm-4 form-group">
                                 <label for="phone">Telefoonnummer</label>
-                                <input required type="text" class="form-control" id="phone" name="phone" <?php if($user["active"]==0){ echo("readonly");} ?> value="<?php echo($user["phone"]); ?>">
+                                <input required type="text" class="form-control" id="phone" name="phone" <?php if($user["active"]==1){ echo("readonly");} ?> value="<?php echo($user["phone"]); ?>">
                                 <div class="errMsg">
                                     <?php if(isset($result['phone'])){ echo $result['phone']; } ?>
                                 </div>
@@ -87,7 +87,7 @@
                             <div class="row">
                             <div class="col-sm-4 form-group">
                                 <label for="birthdate">Geboortedatum</label>
-                                <input required type="date" class="form-control" id="birthdate" name="birthdate" <?php if($user["active"]==0){ echo("readonly");} ?> value="<?php echo($user["birthdate"]); ?>">
+                                <input required type="date" class="form-control" id="birthdate" name="birthdate" <?php if($user["active"]==1){ echo("readonly");} ?> value="<?php echo($user["birthdate"]); ?>">
                                 <div class="errMsg">
                                     <?php if(isset($result['birthdate'])){ echo $result['birthdate']; } ?>
                                 </div>
@@ -96,7 +96,7 @@
                             <div class="row">
                             <div class="col-sm-4 form-group">
                             <label for="city">Woonplaats</label>
-                            <input required type="text" class="form-control" id="city" name="city" <?php if($user["active"]==0){ echo("readonly");} ?> value="<?php echo($user["city"]); ?>">
+                            <input required type="text" class="form-control" id="city" name="city" <?php if($user["active"]==1){ echo("readonly");} ?> value="<?php echo($user["city"]); ?>">
                             <div class="errMsg">
                                 <?php if(isset($result['city'])){ echo $result['city']; } ?>
                             </div>
@@ -104,7 +104,7 @@
                             
                             <div class="col-sm-2 form-group">
                             <label for="zip">Postcode</label>
-                            <input required type="text" class="form-control" id="zip" name="zip" <?php if($user["active"]==0){ echo("readonly");} ?> value='<?php echo($user["zip"]) ?>'>
+                            <input required type="text" class="form-control" id="zip" name="zip" <?php if($user["active"]==1){ echo("readonly");} ?> value='<?php echo($user["zip"]) ?>'>
                             <div class="errMsg">
                                 <?php if(isset($result['zip'])){ echo $result['zip']; } ?>
                             </div>
@@ -113,21 +113,21 @@
                             <div class="row">
                     <div class="col-sm-6 form-group">
                         <label for="street">Straatnaam</label>
-                        <input required type="text" class="form-control" id="street" name="street" <?php if($user["active"]==0){ echo("readonly");} ?> value="<?php echo($user["street"]); ?>">
+                        <input required type="text" class="form-control" id="street" name="street" <?php if($user["active"]==1){ echo("readonly");} ?> value="<?php echo($user["street"]); ?>">
                         <div class="errMsg">
                             <?php if(isset($result['street'])){ echo $result['street']; } ?>
                         </div>
                     </div>
                         <div class="col-sm-2 form-group">
                             <label for="housenumber">Huisnummer</label>
-                            <input required type="number" class="form-control" id="housenumber" name="housenumber" <?php if($user["active"]==0){ echo("readonly");} ?> value=<?php echo($user["housenumber"]); ?>>
+                            <input required type="number" class="form-control" id="housenumber" name="housenumber" <?php if($user["active"]==1){ echo("readonly");} ?> value=<?php echo($user["housenumber"]); ?>>
                             <div class="errMsg">
                                 <?php if(isset($result['housenumber'])){ echo $result['housenumber']; } ?>
                             </div>
                         </div>
                         <div class="col-sm-2 form-group">
                             <label for="extension">Toevoeging</label>
-                            <input type="text" class="form-control" id="extension" name="extension" <?php if($user["active"]==0){ echo("readonly");} ?> value="<?php echo($user["extension"]); ?>">
+                            <input type="text" class="form-control" id="extension" name="extension" <?php if($user["active"]==1){ echo("readonly");} ?> value="<?php echo($user["extension"]); ?>">
                             <div class="errMsg">
                                 <?php if(isset($result['extension'])){ echo $result['extension']; } ?>
                             </div>
@@ -139,7 +139,7 @@
                         <div class="row">
                         <div class="col-sm-6 form-group">
                             <label for="oldpass">Huidig wachtwoord</label>
-                            <input required type="password" class="form-control" <?php if($user["active"]==0){ echo("readonly");} ?> name="oldpass" id="oldpass">
+                            <input required type="password" class="form-control" <?php if($user["active"]==1){ echo("readonly");} ?> name="oldpass" id="oldpass">
                             <div class="errMsg">
                                 <?php if(isset($result['oldpass'])){ echo $result['oldpass']; } ?>
                             </div>
@@ -147,17 +147,17 @@
                         <div class="row">
                         <div class="col-sm-6 form-group">
                             <label for="newpass">Nieuw wachtwoord</label>
-                            <input type="password" class="form-control" <?php if($user["active"]==0){ echo("readonly");} ?> name="newpass" id="newpass">
+                            <input type="password" class="form-control" <?php if($user["active"]==1){ echo("readonly");} ?> name="newpass" id="newpass">
                             <div class="errMsg">
                                 <?php if(isset($result['newpass'])){ echo $result['newpass']; } ?>
                             </div>
                         </div></div>
                             <div class="row">
                         <div class="col-sm-3 form-group">
-                            <input type="submit" name="updatesettings" id="updatesettings" class="btn btn-lg btn-info btn-block" value="Wijzig klantgegevens" <?php if($user["active"]==0){ echo("disabled");} ?>>
+                            <input type="submit" name="updatesettings" id="updatesettings" class="btn btn-lg btn-info btn-block" value="Wijzig klantgegevens" <?php if($user["active"]==1){ echo("disabled");} ?>>
                         </div><div class="col-sm-3 form-group">
                             <button type="button" name="accountstatus" id="accountstatus" class="btn btn-lg btn-warning btn-block" data-toggle="modal" data-target="#setStatus"><?php //Controleer status van account//
-                        if($user["active"]==1){
+                        if($user["active"]==2){
                             echo("Deactiveer account");
                         }else{
                             echo("Activeer account");
@@ -190,7 +190,7 @@
                         <div class="col-sm-5">
                             <form role="form" method="post" accept-charset="UTF-8" action="usersettings.php">
                             <input type="submit" class="btn btn-lg btn-warning btn-block" role="button" id="status" name="status" value="<?php //Controleer status van account//
-                        if($user["active"] == 1){
+                        if($user["active"]==2){
                             echo("Deactiveer account");
                         }else{
                             echo("Activeer account");
