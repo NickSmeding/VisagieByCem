@@ -330,6 +330,29 @@
             }
         }
         
+        //deactiveren/activeren
+        public function setStatus($userid) 
+        {
+            $getActive = new Database();
+            $getActive->query("SELECT active FROM customer WHERE id = :userid");
+            $getActive->bind("userid", $userid);
+            $getActive->execute();
+            $userActive = $getActive->single();
+            if (isset($_POST['status'])){
+                if ($userActive['active'] == 0){
+                    $activate = new Database();
+                    $activate->query("UPDATE Customer SET active = 1 WHERE id = :userid");
+                    $activate->bind("userid", $userid);
+                    $activate->execute();
+                }else{
+                    $deactivate = new Database();
+                    $deactivate->query("UPDATE Customer SET active = 0 WHERE id = :userid");
+                    $deactivate->bind("userid", $userid);
+                    $deactivate->execute();
+                }
+            }
+        }
+        
         //logout
         public function logout($admin)
         {

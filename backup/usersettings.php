@@ -1,4 +1,3 @@
-
 <?php
     session_start();
     include_once('../classes/database.class.php');
@@ -22,20 +21,36 @@
         $result = $userClass->userUpdate($_POST, $_SESSION['user_id']);
     }
 
-    if (isset($_POST['status'])){
-        $userClass->setStatus($_SESSION['user_id']);
-    }
-
     include_once('inc/header.php');
-
-
-    if(isset($result['succes'])){ echo $result['succes']; }
-//benodigde informatie laten zien en laten aanpassen//
 ?>
-    <body>
+<body>
+    <?php    
+        //Deactiveer of activeer account
+        $getActive = new Database();
+        $getActive->query("SELECT active FROM customer WHERE id = :userid");
+        $getActive->bind("userid", $user['id']);
+        $getActive->execute();
+        $userActive = $getActive->single();
+        if (isset($_POST['status'])){
+            if ($userActive['active'] == 0){
+                $activate = new Database();
+                $activate->query("UPDATE Customer SET active = 1 WHERE id = :userid");
+                $activate->bind("userid", $user['id']);
+                $activate->execute();
+            }else{
+                $deactivate = new Database();
+                $deactivate->query("UPDATE Customer SET active = 0 WHERE id = :userid");
+                $deactivate->bind("userid", $user['id']);
+                $deactivate->execute();
+            }
+        }
+
+        if(isset($result['succes'])){ echo $result['succes']; }
+        //benodigde informatie laten zien en laten aanpassen//
+        ?>
         <div class="container">  
                 <div class="col-sm-12">
-                        <h1 class="titel">Account aanpassen</h1>
+                        <h1 class="well">Account aanpassen</h1>
                     <div class="col-lg-12 well"> <!-- grote van achtergrond accountgegevens -->
                         <form role="form" method="post" accept-charset="UTF-8">
                         
@@ -69,10 +84,10 @@
                                 </div>
                             </div></div>
                             <div class="form-group">
-                                <label for="email">emailadres</label>
+                                <label for="e-mail">E-mailadres</label>
                                 <input required type="email" class="form-control" id="e-mail" name="e-mail" <?php if($user["active"]==0){ echo("readonly");} ?> value="<?php echo($user["email"]); ?>">
                                 <div class="errMsg">
-                                    <?php if(isset($result['email'])){ echo $result['email']; } ?>
+                                    <?php if(isset($result['e-mail'])){ echo $result['e-mail']; } ?>
                                 </div>
                             </div>
                             <div class="row">
@@ -155,53 +170,20 @@
                             <div class="row">
                         <div class="col-sm-3 form-group">
                             <input type="submit" name="updatesettings" id="updatesettings" class="btn btn-lg btn-info btn-block" value="Wijzig klantgegevens" <?php if($user["active"]==0){ echo("disabled");} ?>>
-                        </div><div class="col-sm-3 form-group">
-                            <button type="button" name="accountstatus" id="accountstatus" class="btn btn-lg btn-warning btn-block" data-toggle="modal" data-target="#setStatus"><?php //Controleer status van account//
+                        </div><div class="col-sm-3 form-group"></form><form role="form" action="accountstatus.php" method="post" accept-charset="UTF-8">
+                            <input type="submit" name="accountstatus" id="accountstatus" class="btn btn-lg btn-warning btn-block" value="<?php //Controleer status van account//
                         if($user["active"]==1){
                             echo("Deactiveer account");
                         }else{
                             echo("Activeer account");
                         }
-                            ?></button>
-                             </div></div>
+                            ?>"> </div></div>
                         </form>
                         </div>
                     </div>
                 </div>
             
-         <!--- Popup status account -->
-         <div class="modal fade" id="setStatus" role="dialog">
-    <div class="modal-dialog">
-              <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Deactiveren/Activeren</h4>
-        </div>
-        <div class="modal-body">
-          <p class="well">U kunt alleen uw account deactiveren/activeren. 
-                        Als uw account is gedeactiveerd ontvangt u geen e-mails meer en kunt u niet meer alle functionaliteiten van de site gebruiken.
-                        Om uw account te verwijderen gelieve contact op te nemen via een contactformulier.</p>
-        </div>
-        <div class="modal-footer">
-           <div class="row">
-                        <div class="col-sm-3">
-                            <input type="submit" name="back" id="back" class="btn btn-lg btn-info btn-block" data-dismiss="modal" value="Terug">
-                        </div>
-                        <div class="col-sm-5">
-                            <form role="form" method="post" accept-charset="UTF-8" action="usersettings.php">
-                            <input type="submit" class="btn btn-lg btn-warning btn-block" role="button" id="status" name="status" value="<?php //Controleer status van account//
-                        if($user["active"] == 1){
-                            echo("Deactiveer account");
-                        }else{
-                            echo("Activeer account");
-                        }
-                        ?>"></form>
         
-                        </div></div>
-        </div></div>
-        </div>
-      </div>
-
 
     </body>
 </html>
