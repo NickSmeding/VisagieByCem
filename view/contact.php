@@ -10,24 +10,7 @@ and open the template in the editor.
         <title>Contactformulier</title>
     </head>
     <body>
-        <?php
-        
-        session_start();
-        include_once('../classes/database.class.php');
-        include_once('../classes/user.class.php');
-        include_once('../classes/product.class.php');
-        include_once('../classes/cart.class.php');
-        include_once('../classes/instagram.class.php');
-        include_once('inc/head.php');
-            $userClass = new User();
 
-    $productClass = new Product();
-        
-        include_once('inc/header.php');
-
-        
-        
-        ?>
     <div>
         <div class="container">
         
