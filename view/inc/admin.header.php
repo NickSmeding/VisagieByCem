@@ -6,6 +6,13 @@
                 <a class="btn color-roze" href="admin.userlist.php">Gebruikers</a>
                 <a class="btn color-roze" href="adminProductOverview.php">Artikelen</a>
                 <a class="btn color-roze" href="admin.categories.php">Categorieën</a>
+                <a class="btn color-roze" href="admin.shipping.php">Shipping</a>
+                <?php
+                    if($userClass->checkHeadAdmin()){                      
+                        echo '<a class="btn color-roze" href="admin.adminlist.php">Admins</a>';
+                        echo '<a class="btn color-roze" href="admin.blog.php">Blog</a>';
+                    }
+                ?>
             </div>
             <div class="col-md-2 centered">
                 <div class="brand">

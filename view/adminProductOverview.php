@@ -26,6 +26,11 @@
     ?>
     <div class="container">
         <p class="titel">Productoverzicht</p>
+        <div class="row row-c">
+            <a href="adminAddProduct.php"> <!--link naar toevoegpagina-->
+                <input type="submit" name="addProduct" id="addProduct" style="color: #FF1493" value="+ product toevoegen" class="btn btn-default">
+            </a>
+        </div>
         <table id="example1" class="table table-striped dt-responsive display table-condensed" cellspacing="0" width="100%"> <!--table condendes = voor mobiel gebruik maakt het beeld kleiner-->
             <thead>
                 <tr>
@@ -41,11 +46,6 @@
                 </tr>
             </thead>
             <tbody>
-            <div class="row row-c">
-                <a href="adminAddProduct.php"> <!--link naar toevoegpagina-->
-                    <input type="submit" name="addProduct" id="addProduct" style="color: #FF1493" value="+ product toevoegen" class="btn btn-default">
-                </a>
-            </div>
             <?php
 
                 foreach ($result as $product) {

@@ -14,10 +14,8 @@
         header("Location: ../index.php");
         exit(); 
     }
-
-    $adminData = $userClass->getAdminData($_SESSION['admin_id']);
     
-     if (isset($_POST['updatesettings'])) {
+    if (isset($_POST['updatesettings'])) {
         $result = $userClass->userUpdateAdmin($_POST, $_POST['customerid']);
         $user = $userClass->getUserData($_POST['customerid']); 
     }
@@ -57,7 +55,7 @@ if(isset($result['succes'])){ echo $result['succes']; }
                             <div class="row">
                             <div class="col-sm-4 form-group"> 
                                 <label for="firstname">Voornaam</label>
-                                <input required type="text" class="form-control" id="firstname" name="firstname" <?php if($adminData['clearance'] == 0){ echo "readonly"; } ?> value="<?php if(isset($_POST['viewcustomer']) || isset($_GET['customerid']) || isset($_POST['updatesettings'])){ echo($user["firstname"]); }?>"> 
+                                <input required type="text" class="form-control" id="firstname" name="firstname" value="<?php if(isset($_POST['viewcustomer']) || isset($_GET['customerid']) || isset($_POST['updatesettings'])){ echo($user["firstname"]); }?>"> 
                                 <div class="errMsg">
                                     <?php if(isset($result['firstname'])){ echo $result['firstname']; } ?>
                                 </div>
@@ -65,7 +63,7 @@ if(isset($result['succes'])){ echo $result['succes']; }
                             
                             <div class="col-sm-4 form-group">
                                 <label for="insertion">Tussenvoegsel</label>
-                                <input type="text" class="form-control" id="insertion" name="insertion" <?php if($adminData['clearance'] == 0){ echo "readonly"; } ?> value="<?php if(isset($_POST['viewcustomer']) || isset($_GET['customerid']) || isset($_POST['updatesettings'])){ echo($user["insertion"]); }?>">
+                                <input type="text" class="form-control" id="insertion" name="insertion" value="<?php if(isset($_POST['viewcustomer']) || isset($_GET['customerid']) || isset($_POST['updatesettings'])){ echo($user["insertion"]); }?>">
                                 <div class="errMsg">
                                     <?php if(isset($result['insertion'])){ echo $result['insertion']; } ?>
                                 </div>
@@ -73,14 +71,14 @@ if(isset($result['succes'])){ echo $result['succes']; }
                             
                             <div class="col-sm-4 form-group">
                                 <label for="lastname">Achternaam</label>
-                                <input required type="text" class="form-control" id="lastname" name="lastname" <?php if($adminData['clearance'] == 0){ echo "readonly"; } ?> value="<?php if(isset($_POST['viewcustomer']) || isset($_GET['customerid']) || isset($_POST['updatesettings'])){ echo($user["lastname"]); }?>">
+                                <input required type="text" class="form-control" id="lastname" name="lastname" value="<?php if(isset($_POST['viewcustomer']) || isset($_GET['customerid']) || isset($_POST['updatesettings'])){ echo($user["lastname"]); }?>">
                                 <div class="errMsg">
                                     <?php if(isset($result['lastname'])){ echo $result['lastname']; } ?>
                                 </div>
                             </div></div>
                             <div class="form-group">
                                 <label for="email">E-mailadres</label>
-                                <input required type="email" class="form-control" id="email" name="email" <?php if($adminData['clearance'] == 0){ echo "readonly"; } ?> value="<?php if(isset($_POST['viewcustomer']) || isset($_GET['customerid']) || isset($_POST['updatesettings'])){ echo($user["email"]); }?>">
+                                <input required type="email" class="form-control" id="email" name="email" value="<?php if(isset($_POST['viewcustomer']) || isset($_GET['customerid']) || isset($_POST['updatesettings'])){ echo($user["email"]); }?>">
                                 <div class="errMsg">
                                     <?php if(isset($result['e-mail'])){ echo $result['e-mail']; } ?>
                                 </div>
@@ -88,7 +86,7 @@ if(isset($result['succes'])){ echo $result['succes']; }
                             <div class="row">
                             <div class="col-sm-4 form-group">
                                 <label for="phone">Telefoonnummer</label>
-                                <input required type="text" class="form-control" id="phone" name="phone" <?php if($adminData['clearance'] == 0){ echo "readonly"; } ?> value="<?php if(isset($_POST['viewcustomer']) || isset($_GET['customerid']) || isset($_POST['updatesettings'])){ echo($user["phone"]); }?>">
+                                <input required type="text" class="form-control" id="phone" name="phone" value="<?php if(isset($_POST['viewcustomer']) || isset($_GET['customerid']) || isset($_POST['updatesettings'])){ echo($user["phone"]); }?>">
                                 <div class="errMsg">
                                     <?php if(isset($result['phone'])){ echo $result['phone']; } ?>
                                 </div>
@@ -97,7 +95,7 @@ if(isset($result['succes'])){ echo $result['succes']; }
                             <div class="row">
                             <div class="col-sm-4 form-group">
                                 <label for="birthdate">Geboortedatum</label>
-                                <input required type="date" class="form-control" id="birthdate" name="birthdate" <?php if($adminData['clearance'] == 0){ echo "readonly"; } ?> value="<?php if(isset($_POST['viewcustomer']) || isset($_GET['customerid']) || isset($_POST['updatesettings'])){ echo($user["birthdate"]); }?>">
+                                <input required type="date" class="form-control" id="birthdate" name="birthdate" value="<?php if(isset($_POST['viewcustomer']) || isset($_GET['customerid']) || isset($_POST['updatesettings'])){ echo($user["birthdate"]); }?>">
                                 <div class="errMsg">
                                     <?php if(isset($result['birthdate'])){ echo $result['birthdate']; } ?>
                                 </div>
@@ -106,7 +104,7 @@ if(isset($result['succes'])){ echo $result['succes']; }
                             <div class="row">
                             <div class="col-sm-4 form-group">
                             <label for="city">Woonplaats</label>
-                            <input required type="text" class="form-control" id="city" name="city" <?php if($adminData['clearance'] == 0){ echo "readonly"; } ?> value="<?php if(isset($_POST['viewcustomer']) || isset($_GET['customerid']) || isset($_POST['updatesettings'])){ echo($user["city"]); }?>">
+                            <input required type="text" class="form-control" id="city" name="city" value="<?php if(isset($_POST['viewcustomer']) || isset($_GET['customerid']) || isset($_POST['updatesettings'])){ echo($user["city"]); }?>">
                             <div class="errMsg">
                                 <?php if(isset($result['city'])){ echo $result['city']; } ?>
                             </div>
@@ -114,7 +112,7 @@ if(isset($result['succes'])){ echo $result['succes']; }
                             
                             <div class="col-sm-2 form-group">
                             <label for="zip">Postcode</label>
-                            <input required type="text" class="form-control" id="zip" name="zip" <?php if($adminData['clearance'] == 0){ echo "readonly"; } ?> value='<?php if(isset($_POST['viewcustomer']) || isset($_GET['customerid']) || isset($_POST['updatesettings'])){ echo($user["zip"]); }?>'>
+                            <input required type="text" class="form-control" id="zip" name="zip" value='<?php if(isset($_POST['viewcustomer']) || isset($_GET['customerid']) || isset($_POST['updatesettings'])){ echo($user["zip"]); }?>'>
                             <div class="errMsg">
                                 <?php if(isset($result['zip'])){ echo $result['zip']; } ?>
                             </div>
@@ -123,21 +121,21 @@ if(isset($result['succes'])){ echo $result['succes']; }
                             <div class="row">
                     <div class="col-sm-6 form-group">
                         <label for="street">Straatnaam</label>
-                        <input required type="text" class="form-control" id="street" name="street" <?php if($adminData['clearance'] == 0){ echo "readonly"; } ?> value="<?php if(isset($_POST['viewcustomer']) || isset($_GET['customerid']) || isset($_POST['updatesettings'])){ echo($user["street"]); }?>">
+                        <input required type="text" class="form-control" id="street" name="street" value="<?php if(isset($_POST['viewcustomer']) || isset($_GET['customerid']) || isset($_POST['updatesettings'])){ echo($user["street"]); }?>">
                         <div class="errMsg">
                             <?php if(isset($result['street'])){ echo $result['street']; } ?>
                         </div>
                     </div>
                         <div class="col-sm-2 form-group">
                             <label for="housenumber">Huisnummer</label>
-                            <input required type="number" class="form-control" id="housenumber" name="housenumber" <?php if($adminData['clearance'] == 0){ echo "readonly"; } ?> value=<?php if(isset($_POST['viewcustomer']) || isset($_GET['customerid']) || isset($_POST['updatesettings'])){ echo($user["housenumber"]); }?>>
+                            <input required type="number" class="form-control" id="housenumber" name="housenumber" value=<?php if(isset($_POST['viewcustomer']) || isset($_GET['customerid']) || isset($_POST['updatesettings'])){ echo($user["housenumber"]); }?>>
                             <div class="errMsg">
                                 <?php if(isset($result['housenumber'])){ echo $result['housenumber']; } ?>
                             </div>
                         </div>
                         <div class="col-sm-2 form-group">
                             <label for="extension">Toevoeging</label>
-                            <input type="text" class="form-control" id="extension" name="extension" <?php if($adminData['clearance'] == 0){ echo "readonly"; } ?> value="<?php if(isset($_POST['viewcustomer']) || isset($_GET['customerid']) || isset($_POST['updatesettings'])){ echo($user["extension"]); }?>">
+                            <input type="text" class="form-control" id="extension" name="extension" value="<?php if(isset($_POST['viewcustomer']) || isset($_GET['customerid']) || isset($_POST['updatesettings'])){ echo($user["extension"]); }?>">
                             <div class="errMsg">
                                 <?php if(isset($result['extension'])){ echo $result['extension']; } ?>
                             </div>
@@ -145,7 +143,7 @@ if(isset($result['succes'])){ echo $result['succes']; }
                             <div class="row">
                         <div class="col-sm-3 form-group">
                             <label for="activation">Activatiecode</label><a href="#" data-toggle="popover" data-html="true" data-trigger="hover" data-content="0 is geblokkeerd. </br>1 is gedeactiveerd. </br>2 is actief."><label>?</label></a>
-                            <input required type="number" class="form-control" id="active" name="active" min="0" max="2" <?php if($adminData['clearance'] == 0){ echo "readonly"; } ?> value="<?php if(isset($_POST['viewcustomer']) || isset($_GET['customerid']) || isset($_POST['updatesettings'])){ echo($user["active"]); }?>">
+                            <input required type="number" class="form-control" id="active" name="active" min="0" max="2" value="<?php if(isset($_POST['viewcustomer']) || isset($_GET['customerid']) || isset($_POST['updatesettings'])){ echo($user["active"]); }?>">
                         <div class="errMsg">
                                 <?php if(isset($result['active'])){ echo $result['active']; } ?>
                             </div></div></div>
@@ -153,7 +151,7 @@ if(isset($result['succes'])){ echo $result['succes']; }
                         <div class="col-sm-3 form-group">
                             <a href="admin.userlist.php"><input type="button" name="back" id="back" class="btn btn-lg btn-info btn-block" value="Terug naar lijst"></a>
                         </div> <div class="col-sm-3 form-group">
-                            <input type="submit" name="updatesettings" id="updatesettings" class="btn btn-lg btn-info btn-block" value="Wijzig klantgegevens" <?php if($adminData['clearance'] == 0){ echo("disabled");} ?>>
+                            <input type="submit" name="updatesettings" id="updatesettings" class="btn btn-lg btn-info btn-block" value="Wijzig klantgegevens">
                         </div>
                                 
                         

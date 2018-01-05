@@ -103,11 +103,34 @@
             }
         }
         
+        //kijk of er admin ingelogd is
+        public function checkHeadAdmin()
+        {
+            $admin = $this->getAdminData($_SESSION['admin_id']);
+            
+            if($admin['clearance'] == 1){
+                return true;
+            }else{
+                return false;    
+            }
+        }
+        
         //haal alleen user op
         public function selectAllUsers()
         {
             $selectAllUsers = new Database();
             $selectAllUsers->query("SELECT *, customer.id AS customerid FROM customer JOIN Address ON customer.address = address.id");
+            $selectAllUsers->execute();
+            $users = $selectAllUsers->resultset();
+            
+            return $users;      
+        }
+        
+        //haal alleen admins op
+        public function selectAllAdmins()
+        {
+            $selectAllUsers = new Database();
+            $selectAllUsers->query("SELECT * FROM employee");
             $selectAllUsers->execute();
             $users = $selectAllUsers->resultset();
             
@@ -319,6 +342,91 @@
                 $updateUser->bind(":phone", $userinfo['phone']);               
                 $updateUser->bind(":userid", $user_id);
                 $updateUser->bind(":pass", $input_password);
+                $updateUser->execute();
+                
+                $msg['succes'] = "Update is gelukt!";
+                return $msg;
+                //header("Location: admin.users.php");
+                //exit();
+            }else{
+                return $errorMsg;
+            }
+        }
+        
+        //verander gegevens van user
+        public function userUpdateAdmin($userinfo, $user_id)
+        { 
+            $errorMsg = array();
+            $handle = true;
+            $user = $this->getUserData($user_id);
+            
+            //validatie voor opgegeven gegevens
+            if("" == trim($userinfo['firstname'])){
+                $errorMsg['firstname'] = "Voorletters zijn verplicht!";
+                $handle = false;
+            }if("" == trim($userinfo['lastname'])){
+                $errorMsg['lastname'] = "Achternaam is verplicht!";
+                $handle = false;
+            }if("" == trim($userinfo['birthdate'])){
+                $errorMsg['birthdate'] = "Geboortedatum is verplicht!";
+                $handle = false;
+            }if("" == trim($userinfo['email'])){
+                $errorMsg['email'] = "Email is verplicht!";
+                $handle = false;
+            }if("" == trim($userinfo['phone'])){
+                $errorMsg['phone'] = "Telefoonnummer is verplicht!";
+                $handle = false;
+            }if("" == trim($userinfo['city'])){
+                $errorMsg['city'] = "Plaats is verplicht!";
+                $handle = false;
+            }if("" == trim($userinfo['active'])){
+                $errorMsg['city'] = "Actievatiecode is verplicht!";
+                $handle = false;
+            }
+            
+            // als handle niet false is en er dus geen errors zijn update dan de user
+            if($handle == true){
+
+                //controleer of een adres al bestaat in de database
+                $checkAddress = new Database();
+                $checkAddress->query("SELECT id FROM Address WHERE zip = :zip AND housenumber = :housenumber AND extension = :extension AND city = :city AND street = :street");
+                $checkAddress->bind(":housenumber", $userinfo['housenumber']);
+                $checkAddress->bind(":zip", $userinfo['zip']);
+                $checkAddress->bind(":extension", $userinfo['extension']);
+                $checkAddress->bind(":city", $userinfo['city']);
+                $checkAddress->bind(":street", $userinfo['street']);
+                $checkAddress->execute();
+                
+                if($checkAddress->rowCount() <= 0){ 
+                    
+                    //maak nieuw adres
+                    $newAddress = new Database();
+                    $newAddress->query("INSERT INTO Address (zip, housenumber, extension, city, street) VALUES (:zip, :housenumber, :extension, :city, :street)");
+                    $newAddress->bind(":housenumber", $userinfo['housenumber']);
+                    $newAddress->bind(":zip", $userinfo['zip']);
+                    $newAddress->bind(":extension", $userinfo['extension']);
+                    $newAddress->bind(":city", $userinfo['city']);
+                    $newAddress->bind(":street", $userinfo['street']);
+                    $newAddress->execute();
+                    
+                    $addressID = $newAddress->lastInsertedId();
+                }else{
+                    $EXaddress = $checkAddress->single();
+                    $addressID = $EXaddress['id'];
+                }
+                
+                //update user
+                $updateUser = new Database();
+                $updateUser->query("UPDATE customer SET active = :active, firstname = :firstName, insertion = :insertion, lastname = :lastName, address = :address, birthdate = :birthdate, email = :email, phone = :phone WHERE id = :userid");
+                $updateUser->bind(":firstName", $userinfo['firstname']);
+                $updateUser->bind(":insertion", $userinfo['insertion']);
+                $updateUser->bind(":lastName", $userinfo['lastname']);
+                $updateUser->bind(":address", $addressID);
+                $updateUser->bind(":birthdate", $userinfo['birthdate']);
+                $updateUser->bind(":email", $userinfo['email']);
+                $updateUser->bind(":phone", $userinfo['phone']);               
+                $updateUser->bind(":userid", $user_id);
+                $updateUser->bind(":active", $userinfo['active']);
                 $updateUser->execute();
                 
                 $msg['succes'] = "Update is gelukt!";
