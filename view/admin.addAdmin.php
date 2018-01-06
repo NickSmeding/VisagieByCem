@@ -31,8 +31,8 @@ and open the template in the editor.
     
     if(isset($_POST['submitRegister'])){
         
-        $userClass->registerAdmin($_POST);
-        
+        $result = $userClass->registerAdmin($_POST);
+
     }
     
 
@@ -101,9 +101,6 @@ and open the template in the editor.
             </div>
         </div>
     </div>
-        <?php
-            include_once 'inc/footer.php';
-        ?>
 </body>
 
 </html>

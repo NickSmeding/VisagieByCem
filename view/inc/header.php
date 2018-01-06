@@ -10,7 +10,8 @@
         $errorMsg = "";
         
         if ($user_id = $userClass->login($email, $password, $admin)) {
-            //logged in
+            //wanneer user_id iets terug geeft
+            $errorMsg = $user_id;
         }else {
             $errorMsg = 'Incorrecte gegevens!<br>';
         }

@@ -26,12 +26,31 @@
                     $this->admin = $admin; 
                     $_SESSION['admin_id'] = $admin['id'];
 
+                    $_SESSION['num_login_fail'] = 0;
                     return $admin['id'];
                 }
 
                 return false;
-                
+
             }else{
+                
+                if(isset($_SESSION['num_login_fail']))
+                {
+                    if($_SESSION['num_login_fail'] == 3)
+                    {
+                        if(time() - $_SESSION['last_login_time'] < 10*60*60) 
+                        {
+                            // alert to user wait for 10 minutes afer
+                            return 'u heeft drie keer fout ingelogd probeer het opnieuw over '.(gmdate("H:i:s",($_SESSION['last_login_time'] + 10*60*60) - time())); 
+                            die();
+
+                        }else{
+                            //after 10 minutes
+                            $_SESSION['num_login_fail'] = 0;
+                        }
+                    }
+                }
+                
                 //bekijk of user gegevens kloppen
                 $user = $this->checkLoginUser();
 
@@ -40,9 +59,12 @@
                     $this->user = $user; 
                     $_SESSION['user_id'] = $user['id'];
 
+                    $_SESSION['num_login_fail'] = 0;
                     return $user['id'];
                 }
 
+                $_SESSION['num_login_fail'] ++;
+                $_SESSION['last_login_time'] = time();
                 return false;
             }
         }
@@ -438,6 +460,67 @@
             }
         }
         
+        public function registerAdmin($userInfo) {
+
+            $errorMsg = array();
+            $handle = true;
+            
+            //quiery voor het op halen van om te kijken of hij al bestaat
+            $selectAllUsers = new Database();
+            $selectAllUsers->query("SELECT email FROM employee WHERE :email = email");
+            $selectAllUsers->bind(":email", $userInfo['email']);
+            $selectAllUsers->execute();
+
+            //validatie voor opgegeven velden als er iets fout is geef error
+            //voor optimaal gebruik van classes graag een validate class aanmaken wanneer er tijd voor is
+            if ("" == trim($userInfo['firstName'])) {
+                $errorMsg['firstName'] = "Voornaam is verplicht!";
+                $handle = false;
+            }if ("" == trim($userInfo['lastName'])) {
+                $errorMsg['lastName'] = "Achternaam is verplicht!";
+                $handle = false;
+            }if ("" == trim($userInfo['email'])) {
+                $errorMsg['email'] = "Email-adres is verplicht!";
+                $handle = false;
+            }else if($selectAllUsers->rowCount() > 0){
+                $errorMsg['email'] = 'Dit email adress is al ingebruik!';
+                $handle = false;
+            }if ("" == trim($userInfo['password'])) {
+                $errorMsg['password'] = "Wachtwoord is verplicht!";
+                $handle = false;
+            }else if (strlen(trim($userInfo['password'])) < 8) {
+                $errorMsg['password'] = "Het wachtwoord moet minimaal 8 characters lang zijn!";
+                $handle = false;
+            }else if(!(preg_match('/[^0-9a-z\.\&\@]/i', $userInfo['password']))){
+                $errorMsg['password'] = "Het wachtwoord moet minimaal een character hebben dat geen nummer of letter is!";
+                $handle = false;
+            }
+            
+            // voor dit uit als handle true is dus als er geen error
+            
+            if ($handle == true) {
+
+                $customerRegistration = new Database();
+
+                $customerRegistration->query("INSERT INTO employee (firstname, insertion, lastname, password, email, clearance)
+        VALUES (:firstName, :insertion, :lastName, :password, :email, 0)");
+
+                $customerRegistration->bind(":firstName", ucfirst($userInfo['firstName']));
+                $customerRegistration->bind(":insertion", $userInfo['insertion']);
+                $customerRegistration->bind(":lastName", ucfirst($userInfo['lastName']));
+                $customerRegistration->bind(":password", $this->getHash($userInfo['password'], $userInfo['email']));
+                $customerRegistration->bind(":email", $userInfo['email']);
+
+                $customerRegistration->execute();
+                
+                $this->login($userInfo['email'], $userInfo['password'], false);
+                header("Location: admin.adminList.php"); // geef naam van de admin lijst pagina
+                exit();
+            } else {
+                return $errorMsg;
+            }
+        }
+        
         //deactiveren/activeren
         public function setStatus($userid) 
         {
@@ -504,6 +587,14 @@
             $delete = new Database();
             $delete->query("DELETE FROM customer WHERE id=:userid");
             $delete->bind(":userid", $userid);
+            $delete->execute();
+        }
+        
+        //verwijderen admin
+        public function deleteAdmin($adminid){
+            $delete = new Database();
+            $delete->query("DELETE FROM employee WHERE id=:adminid");
+            $delete->bind(":adminid", $adminid);
             $delete->execute();
         }
         

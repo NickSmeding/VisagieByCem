@@ -10,6 +10,7 @@
     $instagramClass = new Instagram();
     $obj = $instagramClass->getImages("6276631180.1677ed0.eff99ec2eb3f4da4abf9f9f8c8b7f8e3", "16");
 
+    $productClass = new Product();
     $cartClass = new Cart();
     
     include_once('inc/header.php');

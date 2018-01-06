@@ -21,9 +21,9 @@
         exit(); 
     }
 
-    //if(ISSET($_POST['verwijder'])){
-    //    $userClass->deleteUser($_POST["id"]);
-    //}
+    if(ISSET($_POST['verwijder'])){
+        $userClass->deleteAdmin($_POST["id"]);
+    }
 
     $userlist = $userClass->selectAllAdmins();
 
@@ -33,7 +33,7 @@
         <div class="container">  
             <h1 class="titel">Accounts</h1>  
             <div class="row row-c">
-                <a href="adminAddProduct.php"> <!--link naar toevoegpagina-->
+                <a href="admin.addAdmin.php"> <!--link naar toevoegpagina-->
                     <input type="submit" name="addProduct" id="addProduct" style="color: #FF1493" value="+ Admin toevoegen" class="btn btn-default">
                 </a>
             </div>
@@ -78,7 +78,7 @@
                             <input type="submit" name="back" id="back" class="btn btn-lg btn-info btn-block" data-dismiss="modal" value="Terug">
                         </div>
                         <div class="col-sm-5">
-                            <form role="form" method="post" accept-charset="UTF-8" action="admin.userlist.php">
+                            <form role="form" method="post" accept-charset="UTF-8" action="admin.adminlist.php">
                             <input type="text" name="id" id="id" value="" style="display:none"/>
                             <input type="submit" class="btn btn-lg btn-warning btn-block" role="button" id="verwijder" name="verwijder" value="Verwijder"></form>
                         </div></div>
