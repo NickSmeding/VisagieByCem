@@ -295,8 +295,8 @@
             }if("" == trim($userinfo['birthdate'])){
                 $errorMsg['birthdate'] = "Geboortedatum is verplicht!";
                 $handle = false;
-            }if("" == trim($userinfo['e-mail'])){
-                $errorMsg['e-mail'] = "Email is verplicht!";
+            }if("" == trim($userinfo['email'])){
+                $errorMsg['email'] = "Email is verplicht!";
                 $handle = false;
             }if("" == trim($userinfo['phone'])){
                 $errorMsg['phone'] = "Telefoonnummer is verplicht!";
@@ -315,10 +315,10 @@
                     $errorMsg['newpass'] = "Het wachtwoord moet minimaal een character hebben dat geen nummer of letter is!";
                     $handle = false;
                 }else{
-                    $input_password = $this->getHash($userinfo['newpass'], $userinfo['e-mail']); 
+                    $input_password = $this->getHash($userinfo['newpass'], $userinfo['email']); 
                 }            
             }else{
-                $input_password = $this->getHash($userinfo['oldpass'], $userinfo['e-mail']);     
+                $input_password = $this->getHash($userinfo['oldpass'], $userinfo['email']);     
             }
             
             // als handle niet false is en er dus geen errors zijn update dan de user
@@ -360,7 +360,7 @@
                 $updateUser->bind(":lastName", $userinfo['lastname']);
                 $updateUser->bind(":address", $addressID);
                 $updateUser->bind(":birthdate", $userinfo['birthdate']);
-                $updateUser->bind(":email", $userinfo['e-mail']);
+                $updateUser->bind(":email", $userinfo['email']);
                 $updateUser->bind(":phone", $userinfo['phone']);               
                 $updateUser->bind(":userid", $user_id);
                 $updateUser->bind(":pass", $input_password);
