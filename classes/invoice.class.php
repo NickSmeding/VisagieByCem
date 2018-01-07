@@ -31,9 +31,9 @@
             $insertInvoice->query("INSERT INTO invoice (date, customer, status, btw, employee, shipping) VALUES (:date, :customer, :status, :btw, :employee, :shipping)");
             $insertInvoice->bind("date", $date);
             $insertInvoice->bind(":customer", $_SESSION['user_id']);
-            $insertInvoice->bind(":status", $date);
+            $insertInvoice->bind(":status", 0);
             $insertInvoice->bind(":btw", $this->getBtw());
-            $insertInvoice->bind(":employee", '1');
+            $insertInvoice->bind(":employee", NULL);
             $insertInvoice->bind(":shipping", $shipping);
             $insertInvoice->execute();
             

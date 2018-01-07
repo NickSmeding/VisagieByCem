@@ -52,7 +52,7 @@
                         <div class="row">
                             <div class="col-xs-8 col-sm-6 col-md-6 col-lg-6 form-group"><!--xs(mobiel) sm(tablet) md(laptop) lg(groot desk)-->
                                 <label for="password">Wachtwoord</label>
-                                <input type="password" name="password" id="password" placeholder="Typ hier uw e-mailadres in.." class="form-control">
+                                <input type="password" name="password" id="password" placeholder="Typ hier uw password in.." class="form-control">
                             </div>
                         </div>
                         <div class="errMsg">

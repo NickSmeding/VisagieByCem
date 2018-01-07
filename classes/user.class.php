@@ -265,7 +265,7 @@
                 $customerRegistration->bind(":phoneNumber", $userInfo['phoneNumber']);
                 $customerRegistration->bind(":address", $addressID);
                 $customerRegistration->bind(":birthdate", $userInfo['dateOfBirth']);
-                $customerRegistration->bind(":active", 1);
+                $customerRegistration->bind(":active", 2);
 
                 $customerRegistration->execute();
                 
