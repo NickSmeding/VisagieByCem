@@ -44,14 +44,14 @@
                     <!--Productnaam-->
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"> <!--de kolom wordt hiermee groter of kleiner gemaakt/ xs(mobiel) sm(tablet) md(laptop) lg(groot desk)-->
                         <label for="name">Naam</label> <!--De label for moet hetzelde als de input id zijn om ze met elkaar te verbinden-->
-                        <input type="text" name="name" id="name" class="form-control"> <!--met`form-control wordt e-mailadres(tekst) boven de kolom geplaatst-->
+                        <input type="text" name="name" id="name" class="form-control" value="<?php if(isset($productInfo["name"])){echo($productInfo["name"]);} ?>"> <!--met`form-control wordt e-mailadres(tekst) boven de kolom geplaatst-->
                         <div class="errMsg">
                             <?php if(isset($result['name'])){ echo $result['name']; } ?>
                         </div>
 
                 <!--Productbeschrijving-->
                         <label for="description">Beschrijving</label>
-                        <textarea name="description" id="description" rows="5"  class="form-control"></textarea> <!--textarea zorgt ervoor dat je meerdere rijen text kunt schrijven-->
+                        <textarea name="description" id="description" rows="5"  class="form-control"><?php if(isset($productInfo["description"])){echo($productInfo["description"]);} ?></textarea> <!--textarea zorgt ervoor dat je meerdere rijen text kunt schrijven-->
                         <!--cols="50" - productfoto gaat 50 omlaag-->
                     </div>
 
@@ -79,7 +79,7 @@
                             <label for="price">Prijs</label>
                             <div class="inner-addon left-addon">
                                 <i class="glyphicon glyphicon-euro"></i>
-                                <input type="text" name="price" id="price" class="form-control">
+                                <input type="text" name="price" id="price" class="form-control" value="<?php if(isset($productInfo["price"])){echo($productInfo["price"]);} ?>">
                             </div>
                         </div>
                     </div>
@@ -91,8 +91,11 @@
                     <div class="row">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                             <label for="stock">Aantal</label>
-                            <input type="number" name="stock" id="stock" value="1" class="form-control">
+                            <input type="number" name="stock" id="stock" value="1" class="form-control" value="<?php if(isset($productInfo["stock"])){echo($productInfo["stock"]);} ?>">
                         </div>
+                    </div>
+                    <div class="errMsg">
+                        <?php if(isset($result['stock'])){ echo $result['stock']; } ?>
                     </div>
                     
                     <!--ProductCat-->
