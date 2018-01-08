@@ -58,7 +58,7 @@
             ?>
         </div>
         <div class="col-sm-12">
-            <?php if(!empty($products)){ echo "<br><h2><b>Meest bekeken <span>producten</span></b></h2><br>"; } ?>
+            <?php if(!empty($products)){ echo "<br><h2><b>Beschikbaren bekeken <span>producten</span></b></h2><br>"; } ?>
             <?php
                 $i = 0;
 

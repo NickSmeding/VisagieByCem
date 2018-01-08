@@ -89,7 +89,7 @@
                                 ?>
                                 <tr>
                                     <td colspan="4">Shipping fee</td>
-                                    <td class="total">&euro;<?php echo $invoice[0]['fee'];?></td>
+                                    <td class="total">&euro;<?php echo $invoice[0]['fee'] / 100;?></td>
                                 </tr>
                                 <tr>
                                     <td colspan="4">TAX <?php echo $invoice[0]['btw']; ?>%</td>
@@ -97,7 +97,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="4" class="grand total">TOTAAL</td>
-                                    <td class="grand total">&euro;<?php echo $totaal + $btw + $invoice[0]['fee'];?></td>
+                                    <td class="grand total">&euro;<?php echo $totaal + $btw + ($invoice[0]['fee'] / 100);?></td>
                                 </tr>
                             </tbody>
                         </table>

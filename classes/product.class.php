@@ -104,11 +104,11 @@
                     //voeg nieuw product toe aan database
                     $addProduct = new Database();
                     $addProduct->query("INSERT INTO `product`(name, price, category, img, description, stock, active) VALUES (:name, :price, :category, :img, :description, :stock, :active)");
-                    $addProduct->bind(":name", $productInfo['name']);
-                    $addProduct->bind(":description", $productInfo['description']);
-                    $addProduct->bind(":stock", $productInfo['stock']);
-                    $addProduct->bind(":price", $productPrice);
-                    $addProduct->bind(":category", $productInfo['category']);
+                    $addProduct->bind(":name", htmlentities($productInfo['name']));
+                    $addProduct->bind(":description", htmlentities($productInfo['description']));
+                    $addProduct->bind(":stock", htmlentities($productInfo['stock']));
+                    $addProduct->bind(":price", htmlentities($productPrice));
+                    $addProduct->bind(":category", htmlentities($productInfo['category']));
                     $addProduct->bind(":img", $imgID);
                     $addProduct->bind(":active", "1");
                     $addProduct->execute();
@@ -200,12 +200,12 @@
                 //voeg nieuw product toe aan database
                 $updateProduct = new Database();
                 $updateProduct->query("UPDATE product SET name = :name, description = :description, stock = :stock, price = :price, category = :category WHERE id = :id");
-                $updateProduct->bind(":name", $productInfo['name']);
-                $updateProduct->bind(":description", $productInfo['description']);
-                $updateProduct->bind(":stock", $productInfo['stock']);
-                $updateProduct->bind(":price", $productPrice);
-                $updateProduct->bind(":category", $productInfo['category']);
-                $updateProduct->bind(":id", $productInfo['id']);
+                $updateProduct->bind(":name", htmlentities($productInfo['name']));
+                $updateProduct->bind(":description", htmlentities($productInfo['description']));
+                $updateProduct->bind(":stock", htmlentities($productInfo['stock']));
+                $updateProduct->bind(":price", htmlentities($productPrice));
+                $updateProduct->bind(":category", htmlentities($productInfo['category']));
+                $updateProduct->bind(":id", htmlentities($productInfo['id']));
                 $updateProduct->execute();
 
                 //$result['succes'] = 'succes';
